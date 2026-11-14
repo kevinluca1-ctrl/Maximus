@@ -1,0 +1,24 @@
+{
+ "templates": [
+  {
+   "id": "ppl",
+   "name": "Push / Beine / Pull (3 Tage)",
+   "status": "aktiv"
+  },
+  {
+   "id": "upper_lower",
+   "name": "Ober-/Unterkörper",
+   "status": "geplant"
+  },
+  {
+   "id": "full2",
+   "name": "2x Ganzkörper",
+   "status": "geplant"
+  },
+  {
+   "id": "full3",
+   "name": "3x Ganzkörper",
+   "status": "geplant"
+  }
+ ]
+}

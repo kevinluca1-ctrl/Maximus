@@ -1,0 +1,22 @@
+:root{--bg:#f4f5f7;--fg:#22252a;--card:#fff;--line:#e1e4e9;--btn:#e3e5ea;--muted:#6b7078;--accent:#22252a;--accentFg:#fff;--view:linear-gradient(#fbfbfc,#e9ecf0);--red:#e0242b}
+[data-theme=dark]{--bg:#15171b;--fg:#e8eaee;--card:#1e2126;--line:#2c3037;--btn:#2a2e35;--muted:#9aa0aa;--accent:#e8eaee;--accentFg:#15171b;--view:linear-gradient(#20242a,#15181d)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--fg);padding-bottom:64px}
+header{display:flex;align-items:center;gap:8px;padding:10px 14px;position:sticky;top:0;background:var(--bg);z-index:5}
+h1{font-size:18px;margin:0;flex:1}h2{font-size:16px;margin:18px 0 8px}
+main{max-width:720px;margin:auto;padding:0 12px}
+button,.btn{border:0;padding:8px 12px;border-radius:8px;background:var(--btn);color:var(--fg);font-size:14px;cursor:pointer;text-decoration:none}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line)}
+nav a{flex:1;text-align:center;padding:16px 0;color:var(--muted);text-decoration:none;font-weight:600}
+nav a.on{color:var(--fg);box-shadow:inset 0 2px 0 var(--red)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.card h3{margin:0 0 2px;font-size:15px}.sub{color:var(--muted);font-size:13px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);color:inherit;text-decoration:none;font-size:14px}
+.row:first-of-type{border-top:0}.row span:last-child{color:var(--muted);white-space:nowrap}
+input[type=search]{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:16px}
+#v{height:min(58vh,460px);background:var(--view);border-radius:14px;margin:10px 0}
+.ctl{display:flex;gap:10px;align-items:center}.ctl input{flex:1;accent-color:var(--red)}
+.chips span{display:inline-block;padding:4px 9px;border-radius:99px;font-size:12px;margin:0 6px 6px 0;background:var(--btn)}
+.chips .p{background:var(--red);color:#fff}.chips .s{background:#f0876f;color:#3a0d05}
+ol{padding-left:20px;margin:6px 0}li{margin:6px 0;font-size:14px}
+.note{color:var(--muted);font-size:13px;text-align:center;padding:60px 12px}

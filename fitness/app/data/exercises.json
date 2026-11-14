@@ -1,0 +1,722 @@
+{
+ "version": 1,
+ "exercises": [
+  {
+   "id": "chest_press",
+   "name_de": "Brustpresse (Maschine)",
+   "name_en": "Machine Chest Press",
+   "session": "A",
+   "sets": 4,
+   "reps": "6-10",
+   "equipment": "Maschine",
+   "grip": "Neutral- oder Obergriff",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt",
+     "triceps",
+     "chest_upper"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Griffe auf Höhe der Brustmitte liegen.",
+    "Schulterblätter nach hinten unten ziehen, Rücken an die Lehne.",
+    "Griffe kontrolliert nach vorne drücken, Ellbogen nicht ganz durchstrecken.",
+    "Langsam zurückführen, bis die Brust gedehnt ist."
+   ],
+   "alternatives": [
+    "Brustpresse am Kabel, sitzend",
+    "Smith-Machine-Bankdrücken"
+   ],
+   "anim": "chest_press"
+  },
+  {
+   "id": "incline_press",
+   "name_de": "Schrägbank-Brustpresse (Maschine)",
+   "name_en": "Incline Machine Press",
+   "session": "A",
+   "sets": 3,
+   "reps": "8-12",
+   "equipment": "Maschine",
+   "grip": "Obergriff",
+   "muscles": {
+    "primary": [
+     "chest_upper"
+    ],
+    "secondary": [
+     "front_delt",
+     "triceps",
+     "chest"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Griffe auf Höhe der oberen Brust liegen.",
+    "Schulterblätter fixieren, Brust raus.",
+    "Schräg nach oben drücken, oben kurz halten.",
+    "Kontrolliert absenken."
+   ],
+   "alternatives": [
+    "Kabel-Fly von unten nach oben",
+    "Schrägbankdrücken an der Smith Machine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_crossover",
+   "name_de": "Kabel-Crossover (mittlere Höhe)",
+   "name_en": "Cable Crossover",
+   "session": "A",
+   "sets": 3,
+   "reps": "10-15",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt",
+     "chest_upper"
+    ]
+   },
+   "steps": [
+    "Rollen auf Schulterhöhe, einen Schritt nach vorne, leichte Schrittstellung.",
+    "Arme leicht gebeugt, Ellbogenwinkel bleibt fest.",
+    "Hände in einem Bogen vor der Brust zusammenführen.",
+    "Langsam öffnen, bis die Brust gedehnt ist."
+   ],
+   "alternatives": [
+    "Butterfly-Maschine",
+    "Kabel-Fly von oben nach unten"
+   ],
+   "anim": null
+  },
+  {
+   "id": "shoulder_press",
+   "name_de": "Schulterpresse (Maschine)",
+   "name_en": "Machine Shoulder Press",
+   "session": "A",
+   "sets": 3,
+   "reps": "8-12",
+   "equipment": "Maschine",
+   "grip": "Ober- oder Neutralgriff",
+   "muscles": {
+    "primary": [
+     "front_delt"
+    ],
+    "secondary": [
+     "side_delt",
+     "triceps",
+     "traps"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Griffe auf Schulterhöhe starten.",
+    "Rücken an die Lehne, Bauch anspannen.",
+    "Senkrecht nach oben drücken, nicht ins Hohlkreuz gehen.",
+    "Kontrolliert bis auf Ohrhöhe absenken."
+   ],
+   "alternatives": [
+    "Schulterdrücken am Kabel",
+    "Schulterdrücken an der Smith Machine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_lateral_raise",
+   "name_de": "Seitheben am Kabel, einarmig",
+   "name_en": "Single-Arm Cable Lateral Raise",
+   "session": "A",
+   "sets": 3,
+   "reps": "12-15",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff",
+   "muscles": {
+    "primary": [
+     "side_delt"
+    ],
+    "secondary": [
+     "traps",
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Rolle ganz unten, seitlich zum Turm stehen, Griff mit der äußeren Hand.",
+    "Arm leicht gebeugt, Oberkörper ruhig.",
+    "Arm seitlich bis auf Schulterhöhe heben, Ellbogen führt.",
+    "Langsam absenken, Spannung halten."
+   ],
+   "alternatives": [
+    "Seitheben-Maschine",
+    "Seitheben mit Kurzhanteln"
+   ],
+   "anim": null
+  },
+  {
+   "id": "triceps_pushdown",
+   "name_de": "Trizepsdrücken am Kabel (Seil)",
+   "name_en": "Rope Triceps Pushdown",
+   "session": "A",
+   "sets": 3,
+   "reps": "10-15",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff am Seil",
+   "muscles": {
+    "primary": [
+     "triceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle oben, Seil greifen, Ellbogen eng am Körper.",
+    "Unterarme nach unten strecken, Seilenden unten auseinanderziehen.",
+    "Kurz halten, Oberarme bleiben ruhig.",
+    "Kontrolliert zurück bis ca. 90 Grad."
+   ],
+   "alternatives": [
+    "Trizepsdrücken mit Stange",
+    "Trizeps-Maschine (Dip-Maschine)"
+   ],
+   "anim": null
+  },
+  {
+   "id": "overhead_triceps",
+   "name_de": "Trizeps Überkopf am Kabel (Seil)",
+   "name_en": "Overhead Cable Triceps Extension",
+   "session": "A",
+   "sets": 2,
+   "reps": "10-12",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff am Seil",
+   "muscles": {
+    "primary": [
+     "triceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle auf Kopfhöhe oder unten, mit dem Rücken zum Turm, Seil hinter dem Kopf.",
+    "Oberarme neben den Ohren fixieren.",
+    "Arme nach vorne oben strecken.",
+    "Langsam hinter den Kopf zurückführen, Dehnung spüren."
+   ],
+   "alternatives": [
+    "Trizepsdrücken am Kabel",
+    "Trizepsstrecken einarmig am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_crunch",
+   "name_de": "Bauch: Kabel-Crunch kniend (Seil)",
+   "name_en": "Kneeling Cable Crunch",
+   "session": "A",
+   "sets": 3,
+   "reps": "10-15",
+   "equipment": "Kabelzug",
+   "grip": "Seil neben dem Kopf",
+   "muscles": {
+    "primary": [
+     "abs"
+    ],
+    "secondary": [
+     "obliques"
+    ]
+   },
+   "steps": [
+    "Rolle oben, vor dem Turm knien, Seil neben den Kopf halten.",
+    "Hüfte bleibt fest, nur der Oberkörper rollt ein.",
+    "Ellbogen Richtung Knie, Bauch fest anspannen.",
+    "Langsam aufrichten, ohne die Spannung zu verlieren."
+   ],
+   "alternatives": [
+    "Bauchmaschine (Crunch)",
+    "Crunch am Boden"
+   ],
+   "anim": null
+  },
+  {
+   "id": "pallof_press",
+   "name_de": "Bauch: Pallof Press am Kabel",
+   "name_en": "Pallof Press",
+   "session": "A",
+   "sets": 3,
+   "reps": "10 pro Seite",
+   "equipment": "Kabelzug",
+   "grip": "Beide Hände am Griff",
+   "muscles": {
+    "primary": [
+     "obliques"
+    ],
+    "secondary": [
+     "abs",
+     "glute_med"
+    ]
+   },
+   "steps": [
+    "Rolle auf Brusthöhe, seitlich zum Turm stehen, Griff mit beiden Händen vor der Brust.",
+    "Füße schulterbreit, Rumpf anspannen.",
+    "Hände gerade nach vorne strecken, nicht zum Turm drehen lassen.",
+    "Kurz halten und zurück zur Brust."
+   ],
+   "alternatives": [
+    "Holzhacker am Kabel",
+    "Seitstütz"
+   ],
+   "anim": null
+  },
+  {
+   "id": "leg_press",
+   "name_de": "Beinpresse",
+   "name_en": "Leg Press",
+   "session": "B",
+   "sets": 4,
+   "reps": "6-10",
+   "equipment": "Maschine",
+   "grip": "Griffe seitlich",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": [
+     "glutes",
+     "hamstrings",
+     "adductors"
+    ]
+   },
+   "steps": [
+    "Füße schulterbreit mittig auf die Platte, Rücken und Gesäß fest im Polster.",
+    "Sicherung lösen, Knie kontrolliert beugen bis ca. 90 Grad.",
+    "Über die ganze Fußsohle nach oben drücken.",
+    "Knie oben nicht ganz durchstrecken."
+   ],
+   "alternatives": [
+    "Hackenschmidt-Maschine",
+    "Kniebeuge an der Smith Machine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "seated_leg_curl",
+   "name_de": "Beinbeuger sitzend (Maschine)",
+   "name_en": "Seated Leg Curl",
+   "session": "B",
+   "sets": 3,
+   "reps": "10-12",
+   "equipment": "Maschine",
+   "grip": "Griffe seitlich",
+   "muscles": {
+    "primary": [
+     "hamstrings"
+    ],
+    "secondary": [
+     "calves"
+    ]
+   },
+   "steps": [
+    "Polster knapp über der Ferse, Oberschenkelpolster fixieren.",
+    "Fersen kontrolliert Richtung Gesäß ziehen.",
+    "Kurz halten.",
+    "Langsam zurück, nicht ganz ablegen."
+   ],
+   "alternatives": [
+    "Beinbeuger liegend",
+    "Pull-Through am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "leg_extension",
+   "name_de": "Beinstrecker (Maschine)",
+   "name_en": "Leg Extension",
+   "session": "B",
+   "sets": 3,
+   "reps": "10-15",
+   "equipment": "Maschine",
+   "grip": "Griffe seitlich",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Drehpunkt der Maschine auf Kniehöhe, Polster über dem Sprunggelenk.",
+    "Beine strecken, oben kurz anspannen.",
+    "Langsam absenken.",
+    "Ohne Schwung arbeiten."
+   ],
+   "alternatives": [
+    "Beinpresse mit engem Stand",
+    "Ausfallschritte an der Smith Machine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_pull_through",
+   "name_de": "Pull-Through am Kabel (Hüftstreckung)",
+   "name_en": "Cable Pull-Through",
+   "session": "B",
+   "sets": 3,
+   "reps": "10-12",
+   "equipment": "Kabelzug",
+   "grip": "Seil zwischen den Beinen",
+   "muscles": {
+    "primary": [
+     "glutes"
+    ],
+    "secondary": [
+     "hamstrings",
+     "lower_back"
+    ]
+   },
+   "steps": [
+    "Rolle unten, mit dem Rücken zum Turm, Seil zwischen den Beinen greifen.",
+    "Zwei Schritte nach vorne, Füße etwas breiter als hüftbreit.",
+    "Hüfte nach hinten schieben, Rücken gerade, Knie leicht gebeugt.",
+    "Hüfte kraftvoll nach vorne strecken, Gesäß anspannen."
+   ],
+   "alternatives": [
+    "Glute-Maschine (Kickback)",
+    "Hip Thrust an der Maschine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "hip_abduction",
+   "name_de": "Abduktoren-Maschine",
+   "name_en": "Hip Abduction Machine",
+   "session": "B",
+   "sets": 2,
+   "reps": "12-15",
+   "equipment": "Maschine",
+   "grip": "Griffe seitlich",
+   "muscles": {
+    "primary": [
+     "glute_med"
+    ],
+    "secondary": [
+     "glutes"
+    ]
+   },
+   "steps": [
+    "Aufrecht sitzen, Polster außen an den Knien.",
+    "Beine kontrolliert nach außen drücken.",
+    "Kurz halten.",
+    "Langsam schließen, Gewicht nicht absetzen."
+   ],
+   "alternatives": [
+    "Abduktion am Kabel stehend",
+    "Seitliches Beinheben"
+   ],
+   "anim": null
+  },
+  {
+   "id": "calf_raise",
+   "name_de": "Wadenheben (Wadenmaschine oder Beinpresse)",
+   "name_en": "Calf Raise",
+   "session": "B",
+   "sets": 3,
+   "reps": "12-15",
+   "equipment": "Maschine",
+   "grip": "Griffe seitlich",
+   "muscles": {
+    "primary": [
+     "calves"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Fußballen auf die Kante, Fersen frei.",
+    "Fersen tief absenken, Dehnung spüren.",
+    "Hoch auf die Zehenspitzen drücken, kurz halten.",
+    "Langsam absenken."
+   ],
+   "alternatives": [
+    "Wadenheben sitzend",
+    "Wadenheben an der Smith Machine"
+   ],
+   "anim": null
+  },
+  {
+   "id": "lat_pulldown_wide",
+   "name_de": "Latzug am Kabel, breit",
+   "name_en": "Wide-Grip Lat Pulldown",
+   "session": "C",
+   "sets": 4,
+   "reps": "8-12",
+   "equipment": "Kabelzug",
+   "grip": "Obergriff, breiter als schulterbreit",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rhomboids",
+     "rear_delt",
+     "traps"
+    ]
+   },
+   "steps": [
+    "Knierolle fest einstellen, Stange breit im Obergriff fassen.",
+    "Brust raus, leicht nach hinten lehnen.",
+    "Stange zur oberen Brust ziehen, Ellbogen nach unten hinten.",
+    "Kontrolliert nach oben, Arme fast strecken."
+   ],
+   "alternatives": [
+    "Latzug-Maschine",
+    "Klimmzug-Maschine mit Unterstützung"
+   ],
+   "anim": "lat_pulldown_wide"
+  },
+  {
+   "id": "seated_cable_row",
+   "name_de": "Rudern am Kabel, sitzend (enger Griff)",
+   "name_en": "Seated Cable Row",
+   "session": "C",
+   "sets": 3,
+   "reps": "8-10",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff eng",
+   "muscles": {
+    "primary": [
+     "rhomboids",
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rear_delt",
+     "traps",
+     "lower_back"
+    ]
+   },
+   "steps": [
+    "Füße auf die Platte, Knie leicht gebeugt, Rücken gerade.",
+    "Griff zum Bauch ziehen, Schulterblätter zusammen.",
+    "Kurz halten, Oberkörper bleibt aufrecht.",
+    "Arme langsam strecken, Schultern nach vorne lassen."
+   ],
+   "alternatives": [
+    "Rudermaschine mit Brustpolster",
+    "Rudern einarmig am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "single_arm_pulldown",
+   "name_de": "Latzug einarmig am Kabel",
+   "name_en": "Single-Arm Lat Pulldown",
+   "session": "C",
+   "sets": 3,
+   "reps": "10-12 pro Seite",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff einarmig",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rear_delt"
+    ]
+   },
+   "steps": [
+    "Rolle oben, einzelner Griff, kniend oder sitzend.",
+    "Arm lang, Schulter nach oben gedehnt.",
+    "Ellbogen eng am Körper zur Hüfte ziehen.",
+    "Langsam zurück in die Dehnung."
+   ],
+   "alternatives": [
+    "Latzug eng im Neutralgriff",
+    "Latzug-Maschine einarmig"
+   ],
+   "anim": null
+  },
+  {
+   "id": "straight_arm_pulldown",
+   "name_de": "Überzüge am Kabel, gestreckte Arme",
+   "name_en": "Straight-Arm Pulldown",
+   "session": "C",
+   "sets": 2,
+   "reps": "12-15",
+   "equipment": "Kabelzug",
+   "grip": "Obergriff an Stange oder Seil",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "triceps",
+     "abs",
+     "rear_delt"
+    ]
+   },
+   "steps": [
+    "Rolle oben, einen Schritt zurück, Oberkörper leicht vorgebeugt.",
+    "Arme fast gestreckt, Stange auf Kopfhöhe.",
+    "Stange im Bogen zu den Oberschenkeln ziehen.",
+    "Langsam zurück nach oben."
+   ],
+   "alternatives": [
+    "Überzug-Maschine",
+    "Latzug einarmig am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "face_pull",
+   "name_de": "Face Pulls am Kabel (Seil)",
+   "name_en": "Face Pull",
+   "session": "C",
+   "sets": 3,
+   "reps": "15",
+   "equipment": "Kabelzug",
+   "grip": "Neutralgriff am Seil",
+   "muscles": {
+    "primary": [
+     "rear_delt"
+    ],
+    "secondary": [
+     "traps",
+     "rhomboids"
+    ]
+   },
+   "steps": [
+    "Rolle auf Kopfhöhe, Seil mit beiden Händen, einen Schritt zurück.",
+    "Seil zum Gesicht ziehen, Ellbogen hoch und nach außen.",
+    "Hände am Ende neben die Ohren, Schulterblätter zusammen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "Reverse Butterfly (Maschine)",
+    "Reverse Fly am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_curl",
+   "name_de": "Bizeps-Curls am Kabel",
+   "name_en": "Cable Biceps Curl",
+   "session": "C",
+   "sets": 3,
+   "reps": "10-12",
+   "equipment": "Kabelzug",
+   "grip": "Untergriff an der Stange",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle unten, Stange im Untergriff, aufrecht stehen.",
+    "Ellbogen eng am Körper.",
+    "Stange zur Schulter beugen, oben anspannen.",
+    "Langsam absenken, Arme fast strecken."
+   ],
+   "alternatives": [
+    "Bizeps-Maschine",
+    "Curls einarmig am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "hammer_curl",
+   "name_de": "Hammer Curls (Kurzhanteln)",
+   "name_en": "Hammer Curl",
+   "session": "C",
+   "sets": 3,
+   "reps": "10-12",
+   "equipment": "Kurzhanteln",
+   "grip": "Neutralgriff",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Aufrecht stehen, Hanteln seitlich, Daumen zeigen nach vorne.",
+    "Ellbogen am Körper fixieren.",
+    "Hanteln ohne Drehen zur Schulter beugen.",
+    "Kontrolliert absenken."
+   ],
+   "alternatives": [
+    "Hammer Curls am Kabel (Seil)",
+    "Bizeps-Curls am Kabel"
+   ],
+   "anim": null
+  },
+  {
+   "id": "captains_chair_knee_raise",
+   "name_de": "Bauch: Knieheben am Dip-Stand",
+   "name_en": "Captain's Chair Knee Raise",
+   "session": "C",
+   "sets": 3,
+   "reps": "10-15",
+   "equipment": "Gerät",
+   "grip": "Unterarme auf den Polstern",
+   "muscles": {
+    "primary": [
+     "abs"
+    ],
+    "secondary": [
+     "obliques",
+     "quads"
+    ]
+   },
+   "steps": [
+    "Unterarme auf die Polster, Rücken an die Lehne, Beine hängen.",
+    "Knie zur Brust ziehen, Becken am Ende leicht einrollen.",
+    "Kurz halten.",
+    "Langsam absenken, nicht schwingen."
+   ],
+   "alternatives": [
+    "Beinheben im Hang",
+    "Bauchmaschine (Crunch)"
+   ],
+   "anim": null
+  },
+  {
+   "id": "cable_woodchop",
+   "name_de": "Bauch: Holzhacker am Kabel (oben nach unten)",
+   "name_en": "Cable Woodchop",
+   "session": "C",
+   "sets": 3,
+   "reps": "12 pro Seite",
+   "equipment": "Kabelzug",
+   "grip": "Beide Hände am Griff",
+   "muscles": {
+    "primary": [
+     "obliques"
+    ],
+    "secondary": [
+     "abs",
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Rolle oben, seitlich zum Turm, Griff mit beiden Händen.",
+    "Arme fast gestreckt, Rumpf angespannt.",
+    "Griff diagonal zur gegenüberliegenden Hüfte ziehen, aus dem Rumpf drehen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "Pallof Press am Kabel",
+    "Rumpfdrehen an der Maschine"
+   ],
+   "anim": null
+  }
+ ]
+}

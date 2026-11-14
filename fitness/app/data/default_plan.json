@@ -1,0 +1,152 @@
+{
+ "model": "ppl",
+ "sessions": [
+  {
+   "id": "A",
+   "title": "Gym A: Push (Brust, Schultern, Trizeps)",
+   "weekday": "MO",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "chest_press",
+     "sets": 4,
+     "reps": "6-10"
+    },
+    {
+     "exercise": "incline_press",
+     "sets": 3,
+     "reps": "8-12"
+    },
+    {
+     "exercise": "cable_crossover",
+     "sets": 3,
+     "reps": "10-15"
+    },
+    {
+     "exercise": "shoulder_press",
+     "sets": 3,
+     "reps": "8-12"
+    },
+    {
+     "exercise": "cable_lateral_raise",
+     "sets": 3,
+     "reps": "12-15"
+    },
+    {
+     "exercise": "triceps_pushdown",
+     "sets": 3,
+     "reps": "10-15"
+    },
+    {
+     "exercise": "overhead_triceps",
+     "sets": 2,
+     "reps": "10-12"
+    },
+    {
+     "exercise": "cable_crunch",
+     "sets": 3,
+     "reps": "10-15"
+    },
+    {
+     "exercise": "pallof_press",
+     "sets": 3,
+     "reps": "10 pro Seite"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "title": "Gym B: Beine",
+   "weekday": "WE",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "leg_press",
+     "sets": 4,
+     "reps": "6-10"
+    },
+    {
+     "exercise": "seated_leg_curl",
+     "sets": 3,
+     "reps": "10-12"
+    },
+    {
+     "exercise": "leg_extension",
+     "sets": 3,
+     "reps": "10-15"
+    },
+    {
+     "exercise": "cable_pull_through",
+     "sets": 3,
+     "reps": "10-12"
+    },
+    {
+     "exercise": "hip_abduction",
+     "sets": 2,
+     "reps": "12-15"
+    },
+    {
+     "exercise": "calf_raise",
+     "sets": 3,
+     "reps": "12-15"
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "title": "Gym C: Pull (Rücken, Bizeps)",
+   "weekday": "FR",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "lat_pulldown_wide",
+     "sets": 4,
+     "reps": "8-12"
+    },
+    {
+     "exercise": "seated_cable_row",
+     "sets": 3,
+     "reps": "8-10"
+    },
+    {
+     "exercise": "single_arm_pulldown",
+     "sets": 3,
+     "reps": "10-12 pro Seite"
+    },
+    {
+     "exercise": "straight_arm_pulldown",
+     "sets": 2,
+     "reps": "12-15"
+    },
+    {
+     "exercise": "face_pull",
+     "sets": 3,
+     "reps": "15"
+    },
+    {
+     "exercise": "cable_curl",
+     "sets": 3,
+     "reps": "10-12"
+    },
+    {
+     "exercise": "hammer_curl",
+     "sets": 3,
+     "reps": "10-12"
+    },
+    {
+     "exercise": "captains_chair_knee_raise",
+     "sets": 3,
+     "reps": "10-15"
+    },
+    {
+     "exercise": "cable_woodchop",
+     "sets": 3,
+     "reps": "12 pro Seite"
+    }
+   ]
+  }
+ ]
+}
