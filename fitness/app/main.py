@@ -1,4 +1,10 @@
-"""Fitness Coach: Home-Assistant-Add-on (Ingress) mit FastAPI + SQLite."""
+"""Fitness Coach: Home-Assistant-Add-on (Ingress) mit FastAPI + SQLite.
+
+Daten: Routinen, Trainings mit Sätzen, Körpermaße, eigene Übungen, Einstellungen,
+laufendes Training (zum Fortsetzen auf jedem Gerät).
+"""
+import csv
+import io
 import json
 import os
 import sqlite3
@@ -6,7 +12,7 @@ import datetime as dt
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Body
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 import gcal
@@ -22,6 +28,7 @@ app = FastAPI(title="Fitness Coach")
 def db():
     con = sqlite3.connect(DB_PATH)
     con.row_factory = sqlite3.Row
+    con.execute("PRAGMA foreign_keys = ON")
     return con
 
 
@@ -29,17 +36,23 @@ def init_db():
     with db() as con:
         con.executescript(
             """
-            CREATE TABLE IF NOT EXISTS logs (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                exercise_id TEXT NOT NULL,
-                date TEXT NOT NULL,
-                set_no INTEGER NOT NULL,
-                weight REAL NOT NULL,
-                reps INTEGER NOT NULL,
-                note TEXT DEFAULT ''
-            );
-            CREATE INDEX IF NOT EXISTS idx_logs_ex ON logs(exercise_id, date);
             CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS workouts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                routine_id TEXT, name TEXT NOT NULL,
+                started TEXT NOT NULL, ended TEXT NOT NULL, note TEXT DEFAULT ''
+            );
+            CREATE TABLE IF NOT EXISTS sets (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                workout_id INTEGER NOT NULL REFERENCES workouts(id) ON DELETE CASCADE,
+                exercise_id TEXT NOT NULL, ex_order INTEGER NOT NULL, set_no INTEGER NOT NULL,
+                kind TEXT NOT NULL DEFAULT 'N', weight REAL NOT NULL DEFAULT 0, reps INTEGER NOT NULL DEFAULT 0
+            );
+            CREATE INDEX IF NOT EXISTS idx_sets_ex ON sets(exercise_id);
+            CREATE TABLE IF NOT EXISTS measurements (
+                id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL,
+                weight REAL, waist REAL, bodyfat REAL, note TEXT DEFAULT ''
+            );
             """
         )
 
@@ -52,10 +65,13 @@ def kv_get(key, default=None):
 
 def kv_set(key, value):
     with db() as con:
-        con.execute(
-            "INSERT INTO kv(k,v) VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v",
-            (key, json.dumps(value, ensure_ascii=False)),
-        )
+        con.execute("INSERT INTO kv(k,v) VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v",
+                    (key, json.dumps(value, ensure_ascii=False)))
+
+
+def kv_del(key):
+    with db() as con:
+        con.execute("DELETE FROM kv WHERE k=?", (key,))
 
 
 def load_json(name):
@@ -64,117 +80,197 @@ def load_json(name):
 
 init_db()
 
+DEFAULT_SETTINGS = {"rest_default": 90, "theme": "auto", "unit": "kg", "rest_vibrate": True}
 
-# ---------- Übungen & Vorlagen ----------
+
+# ---------- Übungen ----------
 @app.get("/api/exercises")
 def exercises():
-    return load_json("exercises.json")
+    builtin = load_json("exercises.json")["exercises"]
+    custom = kv_get("custom_exercises", [])
+    return {"exercises": builtin + custom}
 
 
-@app.get("/api/templates")
-def templates():
-    return load_json("templates.json")
+@app.post("/api/exercises")
+def add_exercise(e: dict = Body(...)):
+    if not e.get("name_de"):
+        raise HTTPException(400, "Name fehlt")
+    custom = kv_get("custom_exercises", [])
+    e["id"] = e.get("id") or "custom_" + dt.datetime.now().strftime("%Y%m%d%H%M%S%f")
+    e.setdefault("name_en", e["name_de"]); e.setdefault("equipment", "Eigene")
+    e.setdefault("muscles", {"primary": [], "secondary": []}); e.setdefault("steps", [])
+    e.setdefault("alternatives", []); e["custom"] = True; e["anim"] = None; e["grip"] = e.get("grip", "")
+    custom = [c for c in custom if c["id"] != e["id"]] + [e]
+    kv_set("custom_exercises", custom)
+    return e
 
 
-# ---------- Plan ----------
-@app.get("/api/plan")
-def get_plan():
-    plan = kv_get("plan")
-    if plan is None:
-        plan = load_json("default_plan.json")
-    return plan
+@app.delete("/api/exercises/{ex_id}")
+def del_exercise(ex_id: str):
+    kv_set("custom_exercises", [c for c in kv_get("custom_exercises", []) if c["id"] != ex_id])
+    return {"ok": True}
 
 
-@app.put("/api/plan")
-def put_plan(plan: dict = Body(...)):
-    if "sessions" not in plan:
-        raise HTTPException(400, "Plan ohne sessions")
-    plan["updated"] = dt.datetime.now().isoformat(timespec="seconds")
-    kv_set("plan", plan)
-    return plan
+# ---------- Routinen ----------
+def get_routines():
+    r = kv_get("routines")
+    if r is None:
+        r = load_json("default_routines.json")["routines"]
+        kv_set("routines", r)
+    return r
 
 
-@app.post("/api/plan/reset")
-def reset_plan():
-    plan = load_json("default_plan.json")
-    kv_set("plan", plan)
-    return plan
+@app.get("/api/routines")
+def routines():
+    return {"routines": get_routines()}
 
 
-# ---------- Gewichtstracking ----------
-@app.get("/api/logs/{exercise_id}")
-def get_logs(exercise_id: str):
+@app.put("/api/routines")
+def put_routines(body: dict = Body(...)):
+    r = body.get("routines")
+    if not isinstance(r, list):
+        raise HTTPException(400, "routines fehlt")
+    kv_set("routines", r)
+    return {"routines": r}
+
+
+@app.post("/api/routines/reset")
+def reset_routines():
+    kv_del("routines")
+    return {"routines": get_routines()}
+
+
+# ---------- Trainings ----------
+def _workout_rows(con, where="", args=()):
+    ws = [dict(r) for r in con.execute(f"SELECT * FROM workouts {where} ORDER BY started DESC", args)]
+    if not ws:
+        return []
+    ids = [w["id"] for w in ws]
+    q = f"SELECT * FROM sets WHERE workout_id IN ({','.join('?' * len(ids))}) ORDER BY ex_order, set_no"
+    by = {}
+    for s in con.execute(q, ids):
+        by.setdefault(s["workout_id"], []).append({k: s[k] for k in ("exercise_id", "ex_order", "set_no", "kind", "weight", "reps")})
+    for w in ws:
+        w["sets"] = by.get(w["id"], [])
+    return ws
+
+
+@app.get("/api/workouts")
+def workouts():
     with db() as con:
-        rows = con.execute(
-            "SELECT id,date,set_no,weight,reps,note FROM logs WHERE exercise_id=? ORDER BY date,set_no",
-            (exercise_id,),
-        ).fetchall()
-    return [dict(r) for r in rows]
+        return {"workouts": _workout_rows(con)}
 
 
-@app.post("/api/logs/{exercise_id}")
-def add_log(exercise_id: str, entry: dict = Body(...)):
-    date = entry.get("date") or dt.date.today().isoformat()
-    sets = entry.get("sets") or []
+@app.get("/api/workouts/{wid}")
+def workout(wid: int):
+    with db() as con:
+        r = _workout_rows(con, "WHERE id=?", (wid,))
+    if not r:
+        raise HTTPException(404, "Training nicht gefunden")
+    return r[0]
+
+
+@app.post("/api/workouts")
+def save_workout(w: dict = Body(...)):
+    sets = [s for s in w.get("sets", []) if int(s.get("reps") or 0) > 0]
     if not sets:
-        raise HTTPException(400, "Keine Sätze")
+        raise HTTPException(400, "Keine abgeschlossenen Sätze")
     with db() as con:
-        con.execute("DELETE FROM logs WHERE exercise_id=? AND date=?", (exercise_id, date))
-        for i, s in enumerate(sets, 1):
-            con.execute(
-                "INSERT INTO logs(exercise_id,date,set_no,weight,reps,note) VALUES(?,?,?,?,?,?)",
-                (exercise_id, date, i, float(s["weight"]), int(s["reps"]), entry.get("note", "")),
-            )
-    return get_logs(exercise_id)
+        cur = con.execute("INSERT INTO workouts(routine_id,name,started,ended,note) VALUES(?,?,?,?,?)",
+                          (w.get("routine_id"), w.get("name") or "Training", w["started"], w["ended"], w.get("note", "")))
+        wid = cur.lastrowid
+        for s in sets:
+            con.execute("INSERT INTO sets(workout_id,exercise_id,ex_order,set_no,kind,weight,reps) VALUES(?,?,?,?,?,?,?)",
+                        (wid, s["exercise_id"], int(s["ex_order"]), int(s["set_no"]), s.get("kind", "N"),
+                         float(s.get("weight") or 0), int(s["reps"])))
+    kv_del("active")
+    return workout(wid)
 
 
-@app.delete("/api/logs/{exercise_id}/{date}")
-def del_log(exercise_id: str, date: str):
+@app.delete("/api/workouts/{wid}")
+def del_workout(wid: int):
     with db() as con:
-        con.execute("DELETE FROM logs WHERE exercise_id=? AND date=?", (exercise_id, date))
-    return get_logs(exercise_id)
+        con.execute("DELETE FROM workouts WHERE id=?", (wid,))
+    return {"ok": True}
 
 
-@app.get("/api/logs")
-def last_logs():
-    """Letzter Eintrag je Übung (für Übersicht)."""
+# ---------- Laufendes Training ----------
+@app.get("/api/active")
+def get_active():
+    return {"active": kv_get("active")}
+
+
+@app.put("/api/active")
+def put_active(body: dict = Body(...)):
+    kv_set("active", body.get("active"))
+    return {"ok": True}
+
+
+@app.delete("/api/active")
+def del_active():
+    kv_del("active")
+    return {"ok": True}
+
+
+# ---------- Körpermaße ----------
+@app.get("/api/measurements")
+def measurements():
     with db() as con:
-        rows = con.execute(
-            """SELECT exercise_id, MAX(date) AS last, MAX(weight) AS top
-               FROM logs GROUP BY exercise_id"""
-        ).fetchall()
-    return {r["exercise_id"]: {"last": r["last"], "top": r["top"]} for r in rows}
+        return {"measurements": [dict(r) for r in con.execute("SELECT * FROM measurements ORDER BY date")]}
 
 
-# ---------- Google-Kalender ----------
+@app.post("/api/measurements")
+def add_measurement(m: dict = Body(...)):
+    vals = {k: (float(m[k]) if m.get(k) not in (None, "") else None) for k in ("weight", "waist", "bodyfat")}
+    if all(v is None for v in vals.values()):
+        raise HTTPException(400, "Kein Wert angegeben")
+    with db() as con:
+        con.execute("INSERT INTO measurements(date,weight,waist,bodyfat,note) VALUES(?,?,?,?,?)",
+                    (m.get("date") or dt.date.today().isoformat(), vals["weight"], vals["waist"], vals["bodyfat"], m.get("note", "")))
+    return measurements()
+
+
+@app.delete("/api/measurements/{mid}")
+def del_measurement(mid: int):
+    with db() as con:
+        con.execute("DELETE FROM measurements WHERE id=?", (mid,))
+    return measurements()
+
+
+# ---------- Einstellungen ----------
+@app.get("/api/settings")
+def settings():
+    return {**DEFAULT_SETTINGS, **kv_get("settings", {})}
+
+
+@app.put("/api/settings")
+def put_settings(s: dict = Body(...)):
+    cur = {**settings(), **{k: v for k, v in s.items() if k in DEFAULT_SETTINGS}}
+    kv_set("settings", cur)
+    return cur
+
+
+# ---------- Export ----------
+@app.get("/api/export.csv")
+def export_csv():
+    names = {e["id"]: e["name_de"] for e in exercises()["exercises"]}
+    buf = io.StringIO()
+    wr = csv.writer(buf, delimiter=";")
+    wr.writerow(["Datum", "Training", "Übung", "Satz", "Art", "Gewicht (kg)", "Wiederholungen"])
+    with db() as con:
+        for w in reversed(_workout_rows(con)):
+            for s in w["sets"]:
+                wr.writerow([w["started"][:10], w["name"], names.get(s["exercise_id"], s["exercise_id"]),
+                             s["set_no"], {"W": "Aufwärmen", "D": "Drop"}.get(s["kind"], "Normal"),
+                             str(s["weight"]).replace(".", ","), s["reps"]])
+    return Response("﻿" + buf.getvalue(), media_type="text/csv",
+                    headers={"Content-Disposition": "attachment; filename=fitness-export.csv"})
+
+
+# ---------- Google-Kalender (Phase 6) ----------
 @app.get("/api/google/status")
 def google_status():
     return gcal.status()
-
-
-@app.get("/api/google/auth_url")
-def google_auth_url():
-    return {"url": gcal.auth_url()}
-
-
-@app.post("/api/google/exchange")
-def google_exchange(body: dict = Body(...)):
-    return gcal.exchange(body.get("redirected_url", ""))
-
-
-@app.post("/api/google/sync")
-def google_sync(body: dict = Body(default={})):
-    plan = get_plan()
-    ex = {e["id"]: e for e in load_json("exercises.json")["exercises"]}
-    return gcal.sync_plan(plan, ex, dry_run=bool(body.get("dry_run")))
-
-
-@app.post("/api/google/today")
-def google_today(body: dict = Body(...)):
-    """Einzelnen Termin (z. B. heute) auf eine andere Einheit umstellen."""
-    plan = get_plan()
-    ex = {e["id"]: e for e in load_json("exercises.json")["exercises"]}
-    return gcal.override_day(plan, ex, body["date"], body["session_id"])
 
 
 # ---------- Frontend ----------
@@ -183,4 +279,4 @@ app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 
 @app.get("/")
 def index():
-    return FileResponse(BASE / "static" / "index.html")
+    return FileResponse(BASE / "static" / "index.html", headers={"Cache-Control": "no-cache"})

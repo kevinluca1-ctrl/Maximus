@@ -7,20 +7,24 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 - [x] Server mit Datenbank (Plan, Gewichts-Logs), Schnittstellen unter `api/`
 - [x] Übungsdaten der 24 Planübungen (DE/EN, Muskeln, Griff, Anleitung, Alternativen als Namen)
 - [x] Oberfläche: Plan-Ansicht, Übungssuche, Detailseite mit 3D-Viewer, Hell/Dunkel
-- [ ] GitHub-Repo anlegen und in HA installieren (GitHub-Anmeldung in dieser Umgebung fehlt)
+- [ ] GitHub-Repo anlegen (Kevin legt leeres Repo an, dann Push) und in HA installieren
 
-## Phase 2: Übungsbibliothek
-- [ ] Alternativübungen als eigene Einträge mit Anleitung und Muskeln (ca. 40)
-- [ ] Filter nach Muskelgruppe und Gerät
+## Phase 2: Übungsbibliothek und Funktionsumfang (Vorbild Lyfta/Hevy)
+- [x] 64 Übungen, Alternativen verlinkt, Filter nach Muskelgruppe und Gerät, eigene Übungen
+- [x] Routinen anlegen/bearbeiten, Live-Training mit Vorher-Werten, Satzarten, Pausentimer
+- [x] Verlauf mit Kalender und Wochen-Serie, Trainingsdetail, neue Rekorde
+- [x] Übungsdetail: Info, Verlauf, Fortschritt (Gewicht, 1RM, Volumen, Wdh.), Rekorde
+- [x] Profil: Trainings pro Woche, Muskelerholung, Wochen-Körperkarte, Monats-Radar, Körpermaße, Plattenrechner, CSV-Export, Einstellungen
+- [x] Platzhalter-Körperkarte statt 3D für Übungen ohne Animation
 
 ## Phase 3: 3D
 - [x] Körpermodell (durchgehende Haut, Muskelrelief, Hände mit Griffarten), Generator in `tools/gen_body.mjs`
 - [x] Animationen: Brustpresse, Latzug breit
 - [ ] Animationen für die übrigen 22 Planübungen, danach Alternativen
 
-## Phase 4: Gewichtstracking
-- [x] Server-Schnittstellen (`api/logs`)
-- [ ] Eingabe je Satz, Verlauf, Diagramm, Progressionshinweis
+## Phase 4: Feinschliff Tracking
+- [ ] Progressionshinweis (Gewicht erhöhen, wenn oberes Wdh.-Ende erreicht)
+- [ ] Trainingsmodelle (Ober/Unter, Ganzkörper) als Vorlagen mit Empfehlungen
 
 ## Phase 5: Planeditor
 - [ ] Übungen tauschen, Sätze/Wiederholungen ändern

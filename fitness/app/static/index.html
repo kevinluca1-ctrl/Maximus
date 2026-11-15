@@ -1,13 +1,20 @@
 <!doctype html>
 <html lang="de" data-theme="light">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#15171b">
+<link rel="icon" href="data:,">
 <title>Fitness Coach</title>
 <link rel="stylesheet" href="static/app.css">
 </head>
 <body>
-<header><h1 id="title">Fitness Coach</h1><button id="theme" aria-label="Hell/Dunkel">🌙</button></header>
-<main id="main"></main>
-<nav><a href="#plan" data-tab="plan">Plan</a><a href="#uebungen" data-tab="uebungen">Übungen</a></nav>
+<header><button id="back" class="icon" hidden aria-label="Zurück">‹</button><h1 id="title">Fitness Coach</h1><button id="theme" class="icon" aria-label="Hell/Dunkel">🌙</button></header>
+<main id="main"><p class="empty">Lädt …</p></main>
+<nav>
+  <a href="#training" data-tab="training"><span>🏋</span>Training</a>
+  <a href="#uebungen" data-tab="uebungen"><span>📖</span>Übungen</a>
+  <a href="#verlauf" data-tab="verlauf"><span>📅</span>Verlauf</a>
+  <a href="#profil" data-tab="profil"><span>👤</span>Profil</a>
+</nav>
 <script type="module" src="static/app.js"></script>
 </body></html>

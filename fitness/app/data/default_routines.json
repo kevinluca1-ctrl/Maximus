@@ -1,0 +1,175 @@
+{
+ "routines": [
+  {
+   "id": "A",
+   "name": "Gym A: Push (Brust, Schultern, Trizeps)",
+   "weekday": "MO",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "chest_press",
+     "sets": 4,
+     "reps": "6-10",
+     "rest": 90
+    },
+    {
+     "exercise": "incline_press",
+     "sets": 3,
+     "reps": "8-12",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_crossover",
+     "sets": 3,
+     "reps": "10-15",
+     "rest": 75
+    },
+    {
+     "exercise": "shoulder_press",
+     "sets": 3,
+     "reps": "8-12",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_lateral_raise",
+     "sets": 3,
+     "reps": "12-15",
+     "rest": 75
+    },
+    {
+     "exercise": "triceps_pushdown",
+     "sets": 3,
+     "reps": "10-15",
+     "rest": 75
+    },
+    {
+     "exercise": "overhead_triceps",
+     "sets": 2,
+     "reps": "10-12",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_crunch",
+     "sets": 3,
+     "reps": "10-15",
+     "rest": 75
+    },
+    {
+     "exercise": "pallof_press",
+     "sets": 3,
+     "reps": "10 pro Seite",
+     "rest": 75
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "name": "Gym B: Beine",
+   "weekday": "WE",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "leg_press",
+     "sets": 4,
+     "reps": "6-10",
+     "rest": 90
+    },
+    {
+     "exercise": "seated_leg_curl",
+     "sets": 3,
+     "reps": "10-12",
+     "rest": 75
+    },
+    {
+     "exercise": "leg_extension",
+     "sets": 3,
+     "reps": "10-15",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_pull_through",
+     "sets": 3,
+     "reps": "10-12",
+     "rest": 75
+    },
+    {
+     "exercise": "hip_abduction",
+     "sets": 2,
+     "reps": "12-15",
+     "rest": 75
+    },
+    {
+     "exercise": "calf_raise",
+     "sets": 3,
+     "reps": "12-15",
+     "rest": 75
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "name": "Gym C: Pull (Rücken, Bizeps)",
+   "weekday": "FR",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "lat_pulldown_wide",
+     "sets": 4,
+     "reps": "8-12",
+     "rest": 90
+    },
+    {
+     "exercise": "seated_cable_row",
+     "sets": 3,
+     "reps": "8-10",
+     "rest": 75
+    },
+    {
+     "exercise": "single_arm_pulldown",
+     "sets": 3,
+     "reps": "10-12 pro Seite",
+     "rest": 75
+    },
+    {
+     "exercise": "straight_arm_pulldown",
+     "sets": 2,
+     "reps": "12-15",
+     "rest": 75
+    },
+    {
+     "exercise": "face_pull",
+     "sets": 3,
+     "reps": "15",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_curl",
+     "sets": 3,
+     "reps": "10-12",
+     "rest": 75
+    },
+    {
+     "exercise": "hammer_curl",
+     "sets": 3,
+     "reps": "10-12",
+     "rest": 75
+    },
+    {
+     "exercise": "captains_chair_knee_raise",
+     "sets": 3,
+     "reps": "10-15",
+     "rest": 75
+    },
+    {
+     "exercise": "cable_woodchop",
+     "sets": 3,
+     "reps": "12 pro Seite",
+     "rest": 75
+    }
+   ]
+  }
+ ]
+}

@@ -1,13 +1,10 @@
 {
- "version": 1,
+ "version": 2,
  "exercises": [
   {
    "id": "chest_press",
    "name_de": "Brustpresse (Maschine)",
    "name_en": "Machine Chest Press",
-   "session": "A",
-   "sets": 4,
-   "reps": "6-10",
    "equipment": "Maschine",
    "grip": "Neutral- oder Obergriff",
    "muscles": {
@@ -27,18 +24,16 @@
     "Langsam zurückführen, bis die Brust gedehnt ist."
    ],
    "alternatives": [
-    "Brustpresse am Kabel, sitzend",
-    "Smith-Machine-Bankdrücken"
+    "cable_chest_press",
+    "smith_bench"
    ],
-   "anim": "chest_press"
+   "anim": "chest_press",
+   "plan": true
   },
   {
    "id": "incline_press",
    "name_de": "Schrägbank-Brustpresse (Maschine)",
    "name_en": "Incline Machine Press",
-   "session": "A",
-   "sets": 3,
-   "reps": "8-12",
    "equipment": "Maschine",
    "grip": "Obergriff",
    "muscles": {
@@ -58,18 +53,16 @@
     "Kontrolliert absenken."
    ],
    "alternatives": [
-    "Kabel-Fly von unten nach oben",
-    "Schrägbankdrücken an der Smith Machine"
+    "low_high_fly",
+    "smith_incline"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_crossover",
    "name_de": "Kabel-Crossover (mittlere Höhe)",
    "name_en": "Cable Crossover",
-   "session": "A",
-   "sets": 3,
-   "reps": "10-15",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff",
    "muscles": {
@@ -88,18 +81,16 @@
     "Langsam öffnen, bis die Brust gedehnt ist."
    ],
    "alternatives": [
-    "Butterfly-Maschine",
-    "Kabel-Fly von oben nach unten"
+    "pec_deck",
+    "high_low_fly"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "shoulder_press",
    "name_de": "Schulterpresse (Maschine)",
    "name_en": "Machine Shoulder Press",
-   "session": "A",
-   "sets": 3,
-   "reps": "8-12",
    "equipment": "Maschine",
    "grip": "Ober- oder Neutralgriff",
    "muscles": {
@@ -119,18 +110,16 @@
     "Kontrolliert bis auf Ohrhöhe absenken."
    ],
    "alternatives": [
-    "Schulterdrücken am Kabel",
-    "Schulterdrücken an der Smith Machine"
+    "cable_shoulder_press",
+    "smith_shoulder_press"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_lateral_raise",
    "name_de": "Seitheben am Kabel, einarmig",
    "name_en": "Single-Arm Cable Lateral Raise",
-   "session": "A",
-   "sets": 3,
-   "reps": "12-15",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff",
    "muscles": {
@@ -149,18 +138,16 @@
     "Langsam absenken, Spannung halten."
    ],
    "alternatives": [
-    "Seitheben-Maschine",
-    "Seitheben mit Kurzhanteln"
+    "machine_lateral",
+    "db_lateral"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "triceps_pushdown",
    "name_de": "Trizepsdrücken am Kabel (Seil)",
    "name_en": "Rope Triceps Pushdown",
-   "session": "A",
-   "sets": 3,
-   "reps": "10-15",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff am Seil",
    "muscles": {
@@ -178,18 +165,16 @@
     "Kontrolliert zurück bis ca. 90 Grad."
    ],
    "alternatives": [
-    "Trizepsdrücken mit Stange",
-    "Trizeps-Maschine (Dip-Maschine)"
+    "bar_pushdown",
+    "dip_machine"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "overhead_triceps",
    "name_de": "Trizeps Überkopf am Kabel (Seil)",
    "name_en": "Overhead Cable Triceps Extension",
-   "session": "A",
-   "sets": 2,
-   "reps": "10-12",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff am Seil",
    "muscles": {
@@ -207,18 +192,16 @@
     "Langsam hinter den Kopf zurückführen, Dehnung spüren."
    ],
    "alternatives": [
-    "Trizepsdrücken am Kabel",
-    "Trizepsstrecken einarmig am Kabel"
+    "triceps_pushdown",
+    "single_arm_triceps"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_crunch",
    "name_de": "Bauch: Kabel-Crunch kniend (Seil)",
    "name_en": "Kneeling Cable Crunch",
-   "session": "A",
-   "sets": 3,
-   "reps": "10-15",
    "equipment": "Kabelzug",
    "grip": "Seil neben dem Kopf",
    "muscles": {
@@ -236,18 +219,16 @@
     "Langsam aufrichten, ohne die Spannung zu verlieren."
    ],
    "alternatives": [
-    "Bauchmaschine (Crunch)",
-    "Crunch am Boden"
+    "ab_machine",
+    "floor_crunch"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "pallof_press",
    "name_de": "Bauch: Pallof Press am Kabel",
    "name_en": "Pallof Press",
-   "session": "A",
-   "sets": 3,
-   "reps": "10 pro Seite",
    "equipment": "Kabelzug",
    "grip": "Beide Hände am Griff",
    "muscles": {
@@ -266,18 +247,16 @@
     "Kurz halten und zurück zur Brust."
    ],
    "alternatives": [
-    "Holzhacker am Kabel",
-    "Seitstütz"
+    "cable_woodchop",
+    "side_plank"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "leg_press",
    "name_de": "Beinpresse",
    "name_en": "Leg Press",
-   "session": "B",
-   "sets": 4,
-   "reps": "6-10",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -297,18 +276,16 @@
     "Knie oben nicht ganz durchstrecken."
    ],
    "alternatives": [
-    "Hackenschmidt-Maschine",
-    "Kniebeuge an der Smith Machine"
+    "hack_squat",
+    "smith_squat"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "seated_leg_curl",
    "name_de": "Beinbeuger sitzend (Maschine)",
    "name_en": "Seated Leg Curl",
-   "session": "B",
-   "sets": 3,
-   "reps": "10-12",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -326,18 +303,16 @@
     "Langsam zurück, nicht ganz ablegen."
    ],
    "alternatives": [
-    "Beinbeuger liegend",
-    "Pull-Through am Kabel"
+    "lying_leg_curl",
+    "cable_pull_through"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "leg_extension",
    "name_de": "Beinstrecker (Maschine)",
    "name_en": "Leg Extension",
-   "session": "B",
-   "sets": 3,
-   "reps": "10-15",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -353,18 +328,16 @@
     "Ohne Schwung arbeiten."
    ],
    "alternatives": [
-    "Beinpresse mit engem Stand",
-    "Ausfallschritte an der Smith Machine"
+    "narrow_leg_press",
+    "smith_lunge"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_pull_through",
    "name_de": "Pull-Through am Kabel (Hüftstreckung)",
    "name_en": "Cable Pull-Through",
-   "session": "B",
-   "sets": 3,
-   "reps": "10-12",
    "equipment": "Kabelzug",
    "grip": "Seil zwischen den Beinen",
    "muscles": {
@@ -383,18 +356,16 @@
     "Hüfte kraftvoll nach vorne strecken, Gesäß anspannen."
    ],
    "alternatives": [
-    "Glute-Maschine (Kickback)",
-    "Hip Thrust an der Maschine"
+    "glute_kickback_machine",
+    "hip_thrust_machine"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "hip_abduction",
    "name_de": "Abduktoren-Maschine",
    "name_en": "Hip Abduction Machine",
-   "session": "B",
-   "sets": 2,
-   "reps": "12-15",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -412,18 +383,16 @@
     "Langsam schließen, Gewicht nicht absetzen."
    ],
    "alternatives": [
-    "Abduktion am Kabel stehend",
-    "Seitliches Beinheben"
+    "cable_abduction",
+    "side_leg_raise"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "calf_raise",
    "name_de": "Wadenheben (Wadenmaschine oder Beinpresse)",
    "name_en": "Calf Raise",
-   "session": "B",
-   "sets": 3,
-   "reps": "12-15",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -439,18 +408,16 @@
     "Langsam absenken."
    ],
    "alternatives": [
-    "Wadenheben sitzend",
-    "Wadenheben an der Smith Machine"
+    "seated_calf",
+    "smith_calf"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "lat_pulldown_wide",
    "name_de": "Latzug am Kabel, breit",
    "name_en": "Wide-Grip Lat Pulldown",
-   "session": "C",
-   "sets": 4,
-   "reps": "8-12",
    "equipment": "Kabelzug",
    "grip": "Obergriff, breiter als schulterbreit",
    "muscles": {
@@ -471,18 +438,16 @@
     "Kontrolliert nach oben, Arme fast strecken."
    ],
    "alternatives": [
-    "Latzug-Maschine",
-    "Klimmzug-Maschine mit Unterstützung"
+    "lat_machine",
+    "assisted_pullup"
    ],
-   "anim": "lat_pulldown_wide"
+   "anim": "lat_pulldown_wide",
+   "plan": true
   },
   {
    "id": "seated_cable_row",
    "name_de": "Rudern am Kabel, sitzend (enger Griff)",
    "name_en": "Seated Cable Row",
-   "session": "C",
-   "sets": 3,
-   "reps": "8-10",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff eng",
    "muscles": {
@@ -504,18 +469,16 @@
     "Arme langsam strecken, Schultern nach vorne lassen."
    ],
    "alternatives": [
-    "Rudermaschine mit Brustpolster",
-    "Rudern einarmig am Kabel"
+    "chest_supported_row",
+    "single_arm_cable_row"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "single_arm_pulldown",
    "name_de": "Latzug einarmig am Kabel",
    "name_en": "Single-Arm Lat Pulldown",
-   "session": "C",
-   "sets": 3,
-   "reps": "10-12 pro Seite",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff einarmig",
    "muscles": {
@@ -534,18 +497,16 @@
     "Langsam zurück in die Dehnung."
    ],
    "alternatives": [
-    "Latzug eng im Neutralgriff",
-    "Latzug-Maschine einarmig"
+    "close_grip_pulldown",
+    "lat_machine"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "straight_arm_pulldown",
    "name_de": "Überzüge am Kabel, gestreckte Arme",
    "name_en": "Straight-Arm Pulldown",
-   "session": "C",
-   "sets": 2,
-   "reps": "12-15",
    "equipment": "Kabelzug",
    "grip": "Obergriff an Stange oder Seil",
    "muscles": {
@@ -565,18 +526,16 @@
     "Langsam zurück nach oben."
    ],
    "alternatives": [
-    "Überzug-Maschine",
-    "Latzug einarmig am Kabel"
+    "pullover_machine",
+    "single_arm_pulldown"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "face_pull",
    "name_de": "Face Pulls am Kabel (Seil)",
    "name_en": "Face Pull",
-   "session": "C",
-   "sets": 3,
-   "reps": "15",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff am Seil",
    "muscles": {
@@ -595,18 +554,16 @@
     "Langsam zurück."
    ],
    "alternatives": [
-    "Reverse Butterfly (Maschine)",
-    "Reverse Fly am Kabel"
+    "reverse_pec_deck",
+    "cable_reverse_fly"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_curl",
    "name_de": "Bizeps-Curls am Kabel",
    "name_en": "Cable Biceps Curl",
-   "session": "C",
-   "sets": 3,
-   "reps": "10-12",
    "equipment": "Kabelzug",
    "grip": "Untergriff an der Stange",
    "muscles": {
@@ -624,18 +581,16 @@
     "Langsam absenken, Arme fast strecken."
    ],
    "alternatives": [
-    "Bizeps-Maschine",
-    "Curls einarmig am Kabel"
+    "biceps_machine",
+    "single_arm_cable_curl"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "hammer_curl",
    "name_de": "Hammer Curls (Kurzhanteln)",
    "name_en": "Hammer Curl",
-   "session": "C",
-   "sets": 3,
-   "reps": "10-12",
    "equipment": "Kurzhanteln",
    "grip": "Neutralgriff",
    "muscles": {
@@ -653,18 +608,16 @@
     "Kontrolliert absenken."
    ],
    "alternatives": [
-    "Hammer Curls am Kabel (Seil)",
-    "Bizeps-Curls am Kabel"
+    "rope_hammer_curl",
+    "cable_curl"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "captains_chair_knee_raise",
    "name_de": "Bauch: Knieheben am Dip-Stand",
    "name_en": "Captain's Chair Knee Raise",
-   "session": "C",
-   "sets": 3,
-   "reps": "10-15",
    "equipment": "Gerät",
    "grip": "Unterarme auf den Polstern",
    "muscles": {
@@ -683,18 +636,16 @@
     "Langsam absenken, nicht schwingen."
    ],
    "alternatives": [
-    "Beinheben im Hang",
-    "Bauchmaschine (Crunch)"
+    "hanging_leg_raise",
+    "ab_machine"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
   },
   {
    "id": "cable_woodchop",
    "name_de": "Bauch: Holzhacker am Kabel (oben nach unten)",
    "name_en": "Cable Woodchop",
-   "session": "C",
-   "sets": 3,
-   "reps": "12 pro Seite",
    "equipment": "Kabelzug",
    "grip": "Beide Hände am Griff",
    "muscles": {
@@ -713,10 +664,1023 @@
     "Langsam zurück."
    ],
    "alternatives": [
-    "Pallof Press am Kabel",
-    "Rumpfdrehen an der Maschine"
+    "pallof_press",
+    "torso_rotation_machine"
    ],
-   "anim": null
+   "anim": null,
+   "plan": true
+  },
+  {
+   "id": "cable_chest_press",
+   "name_de": "Brustpresse am Kabel, stehend",
+   "name_en": "Standing Cable Chest Press",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt",
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Rollen auf Brusthöhe, Schrittstellung zwischen den Türmen.",
+    "Griffe neben der Brust, Ellbogen leicht unter Schulterhöhe.",
+    "Nach vorne drücken, Hände vor der Brust zusammenführen und langsam zurück."
+   ],
+   "alternatives": [
+    "chest_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_bench",
+   "name_de": "Bankdrücken an der Smith Machine",
+   "name_en": "Smith Machine Bench Press",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt",
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Flachbank so stellen, dass die Stange über der unteren Brust läuft.",
+    "Stange etwas breiter als schulterbreit fassen, Schulterblätter zusammen.",
+    "Kontrolliert zur Brust senken und nach oben drücken."
+   ],
+   "alternatives": [
+    "chest_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "low_high_fly",
+   "name_de": "Kabel-Fly von unten nach oben",
+   "name_en": "Low-to-High Cable Fly",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest_upper"
+    ],
+    "secondary": [
+     "front_delt",
+     "chest"
+    ]
+   },
+   "steps": [
+    "Rollen ganz unten, mittig zwischen den Türmen stehen.",
+    "Arme leicht gebeugt, Handflächen nach vorne oben.",
+    "Hände im Bogen auf Kinnhöhe zusammenführen, langsam zurück."
+   ],
+   "alternatives": [
+    "incline_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_incline",
+   "name_de": "Schrägbankdrücken an der Smith Machine",
+   "name_en": "Smith Machine Incline Press",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest_upper"
+    ],
+    "secondary": [
+     "front_delt",
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Bank auf 30 Grad, Stange über der oberen Brust.",
+    "Schulterblätter fixieren, Füße fest am Boden.",
+    "Zur oberen Brust senken und drücken."
+   ],
+   "alternatives": [
+    "incline_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "pec_deck",
+   "name_de": "Butterfly-Maschine",
+   "name_en": "Pec Deck",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Griffe auf Brusthöhe sind.",
+    "Arme leicht gebeugt, Rücken an die Lehne.",
+    "Arme vor der Brust zusammenführen, langsam öffnen."
+   ],
+   "alternatives": [
+    "cable_crossover"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "high_low_fly",
+   "name_de": "Kabel-Fly von oben nach unten",
+   "name_en": "High-to-Low Cable Fly",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "chest"
+    ],
+    "secondary": [
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Rollen ganz oben, Schrittstellung, Oberkörper leicht vor.",
+    "Arme leicht gebeugt.",
+    "Hände im Bogen vor die Hüfte führen, langsam zurück."
+   ],
+   "alternatives": [
+    "cable_crossover"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "cable_shoulder_press",
+   "name_de": "Schulterdrücken am Kabel",
+   "name_en": "Cable Shoulder Press",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "front_delt"
+    ],
+    "secondary": [
+     "side_delt",
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Bank zwischen die Türme, Rollen unten.",
+    "Griffe auf Schulterhöhe.",
+    "Senkrecht nach oben drücken, kontrolliert zurück."
+   ],
+   "alternatives": [
+    "shoulder_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_shoulder_press",
+   "name_de": "Schulterdrücken an der Smith Machine",
+   "name_en": "Smith Machine Shoulder Press",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "front_delt"
+    ],
+    "secondary": [
+     "side_delt",
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Bank aufrecht, Stange vor dem Gesicht.",
+    "Stange etwas breiter als schulterbreit fassen.",
+    "Bis Kinnhöhe senken und nach oben drücken."
+   ],
+   "alternatives": [
+    "shoulder_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "machine_lateral",
+   "name_de": "Seitheben-Maschine",
+   "name_en": "Machine Lateral Raise",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "side_delt"
+    ],
+    "secondary": [
+     "traps"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Schultern auf Höhe des Drehpunkts sind.",
+    "Arme an die Polster.",
+    "Bis Schulterhöhe heben, langsam senken."
+   ],
+   "alternatives": [
+    "cable_lateral_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "db_lateral",
+   "name_de": "Seitheben mit Kurzhanteln",
+   "name_en": "Dumbbell Lateral Raise",
+   "equipment": "Kurzhanteln",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "side_delt"
+    ],
+    "secondary": [
+     "traps",
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Aufrecht stehen, Hanteln seitlich.",
+    "Arme leicht gebeugt.",
+    "Seitlich bis Schulterhöhe heben, langsam senken."
+   ],
+   "alternatives": [
+    "cable_lateral_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "bar_pushdown",
+   "name_de": "Trizepsdrücken mit Stange",
+   "name_en": "Straight-Bar Pushdown",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "triceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle oben, Stange im Obergriff.",
+    "Ellbogen am Körper.",
+    "Nach unten strecken, langsam zurück bis 90 Grad."
+   ],
+   "alternatives": [
+    "triceps_pushdown"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "dip_machine",
+   "name_de": "Dip-Maschine",
+   "name_en": "Machine Dip",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "triceps"
+    ],
+    "secondary": [
+     "chest",
+     "front_delt"
+    ]
+   },
+   "steps": [
+    "Sitz so einstellen, dass die Griffe neben der Hüfte sind.",
+    "Oberkörper aufrecht.",
+    "Griffe nach unten drücken, langsam zurück."
+   ],
+   "alternatives": [
+    "triceps_pushdown"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "single_arm_triceps",
+   "name_de": "Trizepsstrecken einarmig am Kabel",
+   "name_en": "Single-Arm Cable Triceps Extension",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "triceps"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Rolle oben, einzelner Griff im Untergriff.",
+    "Ellbogen am Körper.",
+    "Arm nach unten strecken, langsam zurück."
+   ],
+   "alternatives": [
+    "overhead_triceps"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "ab_machine",
+   "name_de": "Bauchmaschine (Crunch)",
+   "name_en": "Ab Crunch Machine",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "abs"
+    ],
+    "secondary": [
+     "obliques"
+    ]
+   },
+   "steps": [
+    "Sitz einstellen, Füße fixieren, Griffe fassen.",
+    "Oberkörper einrollen, Bauch anspannen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "cable_crunch",
+    "captains_chair_knee_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "floor_crunch",
+   "name_de": "Crunch am Boden",
+   "name_en": "Crunch",
+   "equipment": "Körpergewicht",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "abs"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Rückenlage, Knie gebeugt.",
+    "Schultern vom Boden einrollen.",
+    "Langsam ablegen."
+   ],
+   "alternatives": [
+    "cable_crunch"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "side_plank",
+   "name_de": "Seitstütz",
+   "name_en": "Side Plank",
+   "equipment": "Körpergewicht",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "obliques"
+    ],
+    "secondary": [
+     "abs",
+     "glute_med"
+    ]
+   },
+   "steps": [
+    "Seitlage, Unterarm unter der Schulter.",
+    "Hüfte heben, Körper gerade.",
+    "Halten, dann Seite wechseln."
+   ],
+   "alternatives": [
+    "pallof_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "hack_squat",
+   "name_de": "Hackenschmidt-Maschine",
+   "name_en": "Hack Squat",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": [
+     "glutes",
+     "adductors"
+    ]
+   },
+   "steps": [
+    "Rücken an die Lehne, Füße schulterbreit.",
+    "Bis ca. 90 Grad beugen.",
+    "Über die ganze Fußsohle nach oben drücken."
+   ],
+   "alternatives": [
+    "leg_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_squat",
+   "name_de": "Kniebeuge an der Smith Machine",
+   "name_en": "Smith Machine Squat",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": [
+     "glutes",
+     "hamstrings"
+    ]
+   },
+   "steps": [
+    "Stange auf dem oberen Rücken, Füße leicht vor dem Körper.",
+    "Kontrolliert in die Hocke.",
+    "Nach oben drücken."
+   ],
+   "alternatives": [
+    "leg_press"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "lying_leg_curl",
+   "name_de": "Beinbeuger liegend",
+   "name_en": "Lying Leg Curl",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "hamstrings"
+    ],
+    "secondary": [
+     "calves"
+    ]
+   },
+   "steps": [
+    "Bauchlage, Polster über der Ferse.",
+    "Fersen zum Gesäß ziehen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "seated_leg_curl"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "narrow_leg_press",
+   "name_de": "Beinpresse mit engem Stand",
+   "name_en": "Narrow-Stance Leg Press",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": [
+     "glutes"
+    ]
+   },
+   "steps": [
+    "Füße hüftbreit, tief auf der Platte.",
+    "Knie weit beugen.",
+    "Nach oben drücken."
+   ],
+   "alternatives": [
+    "leg_extension"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_lunge",
+   "name_de": "Ausfallschritte an der Smith Machine",
+   "name_en": "Smith Machine Split Squat",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "quads"
+    ],
+    "secondary": [
+     "glutes",
+     "adductors"
+    ]
+   },
+   "steps": [
+    "Stange auf dem Rücken, großer Schritt nach vorne.",
+    "Hinteres Knie Richtung Boden senken.",
+    "Über das vordere Bein hochdrücken."
+   ],
+   "alternatives": [
+    "leg_extension"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "glute_kickback_machine",
+   "name_de": "Glute-Maschine (Kickback)",
+   "name_en": "Glute Kickback Machine",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "glutes"
+    ],
+    "secondary": [
+     "hamstrings"
+    ]
+   },
+   "steps": [
+    "Brust an das Polster, Fuß auf die Platte.",
+    "Bein nach hinten oben strecken.",
+    "Langsam zurück, Seite wechseln."
+   ],
+   "alternatives": [
+    "cable_pull_through"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "hip_thrust_machine",
+   "name_de": "Hip Thrust an der Maschine",
+   "name_en": "Machine Hip Thrust",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "glutes"
+    ],
+    "secondary": [
+     "hamstrings"
+    ]
+   },
+   "steps": [
+    "Rücken an das Polster, Gurt über der Hüfte.",
+    "Hüfte nach oben strecken.",
+    "Oben anspannen, langsam senken."
+   ],
+   "alternatives": [
+    "cable_pull_through"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "cable_abduction",
+   "name_de": "Abduktion am Kabel stehend",
+   "name_en": "Standing Cable Hip Abduction",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "glute_med"
+    ],
+    "secondary": [
+     "glutes"
+    ]
+   },
+   "steps": [
+    "Rolle unten, Manschette am äußeren Knöchel.",
+    "Aufrecht stehen, am Turm festhalten.",
+    "Bein seitlich abspreizen, langsam zurück."
+   ],
+   "alternatives": [
+    "hip_abduction"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "side_leg_raise",
+   "name_de": "Seitliches Beinheben",
+   "name_en": "Side-Lying Leg Raise",
+   "equipment": "Körpergewicht",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "glute_med"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Seitlage, Beine gestreckt.",
+    "Oberes Bein anheben.",
+    "Langsam senken."
+   ],
+   "alternatives": [
+    "hip_abduction"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "seated_calf",
+   "name_de": "Wadenheben sitzend",
+   "name_en": "Seated Calf Raise",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "calves"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Polster auf den Oberschenkeln, Fußballen auf der Kante.",
+    "Fersen tief absenken.",
+    "Hoch auf die Zehen drücken."
+   ],
+   "alternatives": [
+    "calf_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "smith_calf",
+   "name_de": "Wadenheben an der Smith Machine",
+   "name_en": "Smith Machine Calf Raise",
+   "equipment": "Smith Machine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "calves"
+    ],
+    "secondary": []
+   },
+   "steps": [
+    "Stange auf dem Rücken, Fußballen auf einer Erhöhung.",
+    "Fersen absenken.",
+    "Hoch auf die Zehen drücken."
+   ],
+   "alternatives": [
+    "calf_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "lat_machine",
+   "name_de": "Latzug-Maschine",
+   "name_en": "Machine Lat Pulldown",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rhomboids"
+    ]
+   },
+   "steps": [
+    "Knie unter die Polster, Griffe fassen.",
+    "Brust raus.",
+    "Griffe nach unten ziehen, langsam zurück."
+   ],
+   "alternatives": [
+    "lat_pulldown_wide",
+    "single_arm_pulldown"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "assisted_pullup",
+   "name_de": "Klimmzug-Maschine mit Unterstützung",
+   "name_en": "Assisted Pull-Up",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rhomboids",
+     "rear_delt"
+    ]
+   },
+   "steps": [
+    "Knie auf das Polster, Griffe breit fassen.",
+    "Brust zur Stange ziehen.",
+    "Langsam nach unten, Arme fast strecken."
+   ],
+   "alternatives": [
+    "lat_pulldown_wide"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "chest_supported_row",
+   "name_de": "Rudermaschine mit Brustpolster",
+   "name_en": "Chest-Supported Machine Row",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "rhomboids",
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rear_delt"
+    ]
+   },
+   "steps": [
+    "Brust an das Polster, Griffe fassen.",
+    "Ellbogen nach hinten ziehen, Schulterblätter zusammen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "seated_cable_row"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "single_arm_cable_row",
+   "name_de": "Rudern einarmig am Kabel",
+   "name_en": "Single-Arm Cable Row",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "rhomboids",
+     "biceps"
+    ]
+   },
+   "steps": [
+    "Rolle auf Brusthöhe, einzelner Griff.",
+    "Ellbogen eng zur Hüfte ziehen.",
+    "Langsam zurück, Seite wechseln."
+   ],
+   "alternatives": [
+    "seated_cable_row"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "close_grip_pulldown",
+   "name_de": "Latzug eng im Neutralgriff",
+   "name_en": "Close-Grip Pulldown",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "biceps",
+     "rhomboids"
+    ]
+   },
+   "steps": [
+    "V-Griff einhängen, Knierolle einstellen.",
+    "Griff zur Brust ziehen.",
+    "Langsam nach oben."
+   ],
+   "alternatives": [
+    "single_arm_pulldown"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "pullover_machine",
+   "name_de": "Überzug-Maschine",
+   "name_en": "Machine Pullover",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "lats"
+    ],
+    "secondary": [
+     "triceps"
+    ]
+   },
+   "steps": [
+    "Sitz einstellen, Ellbogen an die Polster.",
+    "Arme im Bogen nach unten bewegen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "straight_arm_pulldown"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "reverse_pec_deck",
+   "name_de": "Reverse Butterfly (Maschine)",
+   "name_en": "Reverse Pec Deck",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "rear_delt"
+    ],
+    "secondary": [
+     "rhomboids",
+     "traps"
+    ]
+   },
+   "steps": [
+    "Brust an das Polster, Griffe vor dem Körper.",
+    "Arme seitlich nach hinten öffnen.",
+    "Langsam zurück."
+   ],
+   "alternatives": [
+    "face_pull"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "cable_reverse_fly",
+   "name_de": "Reverse Fly am Kabel",
+   "name_en": "Cable Reverse Fly",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "rear_delt"
+    ],
+    "secondary": [
+     "rhomboids"
+    ]
+   },
+   "steps": [
+    "Rollen auf Schulterhöhe, Kabel überkreuzt greifen.",
+    "Arme leicht gebeugt.",
+    "Arme seitlich nach hinten ziehen, langsam zurück."
+   ],
+   "alternatives": [
+    "face_pull"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "biceps_machine",
+   "name_de": "Bizeps-Maschine",
+   "name_en": "Machine Biceps Curl",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Oberarme auf das Polster.",
+    "Griffe zur Schulter beugen.",
+    "Langsam strecken."
+   ],
+   "alternatives": [
+    "cable_curl"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "single_arm_cable_curl",
+   "name_de": "Curls einarmig am Kabel",
+   "name_en": "Single-Arm Cable Curl",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle unten, einzelner Griff im Untergriff.",
+    "Ellbogen am Körper.",
+    "Zur Schulter beugen, langsam senken."
+   ],
+   "alternatives": [
+    "cable_curl"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "rope_hammer_curl",
+   "name_de": "Hammer Curls am Kabel (Seil)",
+   "name_en": "Rope Hammer Curl",
+   "equipment": "Kabelzug",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Rolle unten, Seil im Neutralgriff.",
+    "Ellbogen am Körper.",
+    "Zur Schulter beugen, langsam senken."
+   ],
+   "alternatives": [
+    "hammer_curl"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "hanging_leg_raise",
+   "name_de": "Beinheben im Hang",
+   "name_en": "Hanging Leg Raise",
+   "equipment": "Körpergewicht",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "abs"
+    ],
+    "secondary": [
+     "obliques"
+    ]
+   },
+   "steps": [
+    "An die Stange hängen.",
+    "Beine bzw. Knie kontrolliert anheben.",
+    "Langsam senken, nicht schwingen."
+   ],
+   "alternatives": [
+    "captains_chair_knee_raise"
+   ],
+   "anim": null,
+   "plan": false
+  },
+  {
+   "id": "torso_rotation_machine",
+   "name_de": "Rumpfdrehen an der Maschine",
+   "name_en": "Machine Torso Rotation",
+   "equipment": "Maschine",
+   "grip": "",
+   "muscles": {
+    "primary": [
+     "obliques"
+    ],
+    "secondary": [
+     "abs"
+    ]
+   },
+   "steps": [
+    "Sitz einstellen, Beine fixieren.",
+    "Oberkörper gegen den Widerstand drehen.",
+    "Langsam zurück, Seite wechseln."
+   ],
+   "alternatives": [
+    "cable_woodchop"
+   ],
+   "anim": null,
+   "plan": false
   }
  ]
 }
