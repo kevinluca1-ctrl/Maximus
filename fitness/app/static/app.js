@@ -344,7 +344,7 @@ async function viewExercise(id, tab = 'info') {
     T.innerHTML = `<div class="chips" id="mt">${Object.entries(metrics).map(([k, v]) => `<button class="chip" data-m="${k}">${v[0]}</button>`).join('')}</div>
       <div class="card" id="ch"></div>
       <h2 class="sec">Persönliche Rekorde</h2>
-      <div class="stats">${[['Höchstes Gewicht', rec.weight, 'kg'], ['Bestes 1RM', rec.e1rm, 'kg'], ['Bestes Volumen', rec.volume, 'kg'], ['Meiste Wdh.', rec.reps, '']].map(([l, v, u]) => `<div class="stat"><small>${l}</small><b>${v ? fmtNum(v, u ? 1 : 0) + (u ? ' ' + u : '') : '-'}</b></div>`).join('')}</div>`;
+      <div class="stats four">${[['Höchstes Gewicht', rec.weight, 'kg'], ['Bestes 1RM', rec.e1rm, 'kg'], ['Bestes Volumen', rec.volume, 'kg'], ['Meiste Wdh.', rec.reps, '']].map(([l, v, u]) => `<div class="stat"><small>${l}</small><b>${v ? fmtNum(v, u ? 1 : 0) + (u ? ' ' + u : '') : '-'}</b></div>`).join('')}</div>`;
     $('#mt').onclick = (ev) => { const b = ev.target.closest('[data-m]'); if (b) { m = b.dataset.m; sessionStorage.setItem('fc-metric', m); draw(); } };
     draw();
   }
@@ -407,9 +407,9 @@ function viewProfile() {
     <div class="card"><div class="r-head"><b>Trainings pro Woche</b><span class="sub">letzte 12 Wochen</span></div>${barChart(weeks.map((d) => d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' })), perWeek)}</div>
     <div class="stats"><div class="stat"><small>Wochen-Serie</small><b>🔥 ${weekStreak()}</b></div><div class="stat"><small>Trainings</small><b>${S.workouts.length}</b></div><div class="stat"><small>Gewicht</small><b>${lastM?.weight ? fmtNum(lastM.weight) + ' kg' : '-'}</b></div></div>
     <a class="card linkcard" href="#erholung"><div class="r-head"><div><b>Muskelerholung</b><div class="sub">Welche Muskeln bereit sind</div></div><span class="ring" style="--p:${overall}">${overall}%</span></div>
-      <div class="rec-strip">${GROUPS.map((g) => `<div>${bodyMap(groupValues(g, 1), 'auto')}<span class="pill p${rec[g.id] >= 90 ? 3 : rec[g.id] >= 60 ? 2 : 1}">${rec[g.id]}%</span></div>`).join('')}</div><div class="link right">Alle anzeigen</div></a>
+      <div class="rec-strip">${GROUPS.map((g) => `<div>${bodyMap(groupValues(g, 1), 'auto')}<small>${esc(g.short || g.name)}</small><span class="pill p${rec[g.id] >= 90 ? 3 : rec[g.id] >= 60 ? 2 : 1}">${rec[g.id]}%</span></div>`).join('')}</div><div class="link right">Alle anzeigen</div></a>
     <div class="card"><b>Diese Woche</b><div class="sub">Welche Muskeln du trainiert hast</div>${bodyMap(normalize(weekLoad), 'both')}</div>
-    <div class="card"><b>Diesen Monat</b><div class="sub">Sätze je Muskelgruppe, letzte 30 Tage</div>${radarChart(GROUPS.map((g) => g.name.split(' ')[0]), GROUPS.map((g) => monthLoad[g.id]))}</div>
+    <div class="card"><b>Diesen Monat</b><div class="sub">Sätze je Muskelgruppe, letzte 30 Tage</div>${radarChart(GROUPS.map((g) => g.short || g.name), GROUPS.map((g) => monthLoad[g.id]))}</div>
     <h2 class="sec">Persönliche Rekorde</h2>
     ${records.length ? `<div class="card flush">${records.map(({ e, r }) => `<a class="ex-row" href="#ex/${e.id}/fortschritt">${bodyMap(exerciseValues(e), 'auto')}<span><b>${esc(e.name_de)}</b><small>Bestes Gewicht ${fmtNum(r.weight)} kg</small></span><i class="tag gold">1RM ${fmtNum(r.e1rm)}</i></a>`).join('')}</div>` : '<p class="empty">Rekorde erscheinen nach deinen ersten Trainings.</p>'}
     <h2 class="sec">Mehr</h2>

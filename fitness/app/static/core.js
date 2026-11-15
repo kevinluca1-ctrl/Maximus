@@ -28,11 +28,11 @@ export const GROUPS = [
   { id: 'back', name: 'Rücken', cat: 'Pull', muscles: ['lats', 'rhomboids', 'traps', 'lower_back'] },
   { id: 'biceps', name: 'Bizeps', cat: 'Pull', muscles: ['biceps'] },
   { id: 'forearms', name: 'Unterarme', cat: 'Pull', muscles: ['forearms'] },
-  { id: 'quads', name: 'Oberschenkel vorne', cat: 'Beine', muscles: ['quads'] },
-  { id: 'hamstrings', name: 'Oberschenkel hinten', cat: 'Beine', muscles: ['hamstrings'] },
-  { id: 'hips', name: 'Gesäß und Hüfte', cat: 'Beine', muscles: ['glutes', 'glute_med', 'adductors'] },
+  { id: 'quads', name: 'Oberschenkel vorne', short: 'Beine vorne', cat: 'Beine', muscles: ['quads'] },
+  { id: 'hamstrings', name: 'Oberschenkel hinten', short: 'Beine hinten', cat: 'Beine', muscles: ['hamstrings'] },
+  { id: 'hips', name: 'Gesäß und Hüfte', short: 'Gesäß', cat: 'Beine', muscles: ['glutes', 'glute_med', 'adductors'] },
   { id: 'calves', name: 'Waden', cat: 'Beine', muscles: ['calves'] },
-  { id: 'core', name: 'Bauch', cat: 'Rumpf', muscles: ['abs', 'obliques'] },
+  { id: 'core', name: 'Bauch', short: 'Bauch', cat: 'Rumpf', muscles: ['abs', 'obliques'] },
 ];
 export const DAYS = { MO: 'Montag', TU: 'Dienstag', WE: 'Mittwoch', TH: 'Donnerstag', FR: 'Freitag', SA: 'Samstag', SU: 'Sonntag' };
 export const DAY_KEYS = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
