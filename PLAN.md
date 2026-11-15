@@ -24,7 +24,7 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 - [ ] Animationen für die übrigen 22 Planübungen, danach Alternativen
 
 ## Phase 4: Feinschliff Tracking
-- [ ] Progressionshinweis (Gewicht erhöhen, wenn oberes Wdh.-Ende erreicht)
+- [x] Progressionshinweis (Gewicht erhöhen, wenn oberes Wdh.-Ende erreicht): Vorschlag aus der letzten Einheit mit "Übernehmen", Live-Hinweis und Liste auf dem Abschlussbildschirm
 - [ ] Trainingsmodelle (Ober/Unter, Ganzkörper) als Vorlagen mit Empfehlungen
 
 ## Phase 5: Planeditor

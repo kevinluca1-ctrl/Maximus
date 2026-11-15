@@ -165,3 +165,30 @@ export function nextRoutine() {
   }
   return null;
 }
+
+// ---------- Progression ----------
+// Wiederholungsbereich aus dem Routinenziel lesen: "8-12" -> [8, 12], "10 pro Seite" -> [10, 10]
+export function repRange(target) {
+  const t = String(target ?? '');
+  const m = t.match(/(\d+)\s*(?:-|bis|–)\s*(\d+)/);
+  if (m) return [+m[1], +m[2]];
+  const n = parseInt(t, 10);
+  return n > 0 ? [n, n] : null;
+}
+// Kleinster sinnvoller Gewichtsschritt: Kurzhanteln 2 kg, leichte Kabelgewichte 1,25 kg, sonst 2,5 kg
+export function weightStep(ex, weight) {
+  if (ex?.equipment === 'Kurzhanteln') return 2;
+  return weight < 20 ? 1.25 : 2.5;
+}
+// Vorschlag, wenn alle normalen Sätze das obere Wdh.-Ende erreicht haben. Aufwärm- und Dropsätze zählen nicht.
+export function progressionFrom(sets, target, exId) {
+  const range = repRange(target); if (!range) return null;
+  const top = range[1];
+  const norm = sets.filter((s) => (s.kind || 'N') === 'N' && +s.reps > 0);
+  if (!norm.length) return null;
+  const weight = Math.max(...norm.map((s) => +s.weight || 0));
+  if (!(weight > 0) || norm.some((s) => +s.reps < top)) return null;
+  const step = weightStep(S.byId[exId], weight);
+  return { weight, next: Math.round((weight + step) * 100) / 100, step, top };
+}
+export const progressionHint = (exId, target) => progressionFrom(previousSets(exId), target, exId);

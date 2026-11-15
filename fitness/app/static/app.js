@@ -2,7 +2,7 @@
 import {
   api, S, MUSCLES, GROUPS, DAYS, loadAll, reloadWorkouts, esc, exName, fmtDate, fmtNum, fmtDur, fmtClock, isoDay,
   e1rm, workSets, volume, exerciseHistory, exerciseRecords, newRecords, previousSets, muscleLoad, groupLoad, setsSince,
-  recovery, mondayOf, weekStreak, nextRoutine,
+  recovery, mondayOf, weekStreak, nextRoutine, progressionFrom, progressionHint,
 } from './core.js';
 import { bodyMap, exerciseValues } from './bodymap.js';
 import { lineChart, barChart, radarChart } from './charts.js';
@@ -125,7 +125,11 @@ function viewWorkout() {
         if (!(+s.reps > 0)) { toast('Bitte Wiederholungen eintragen'); return; }
         s.done = true; if (s.kind !== 'W') startRest(blk.rest);
       } else s.done = false;
-    } else if (act === 'addset') { const last = blk.sets[blk.sets.length - 1]; blk.sets.push({ kind: 'N', weight: last?.weight || '', reps: '', done: false }); }
+    } else if (act === 'prog') {
+      const pg = progressionHint(blk.exercise, blk.target);
+      if (pg) { blk.sets.forEach((x) => { if (!x.done && x.kind !== 'W') x.weight = String(pg.next); }); blk.prog = 'ok'; toast(`${fmtNum(pg.next)} kg eingetragen`); }
+    } else if (act === 'progx') blk.prog = 'no';
+    else if (act === 'addset') { const last = blk.sets[blk.sets.length - 1]; blk.sets.push({ kind: 'N', weight: last?.weight || '', reps: '', done: false }); }
     else if (act === 'menu') {
       const r = await sheet(exName(blk.exercise), [['replace', 'Übung ersetzen'], ['up', 'Nach oben'], ['down', 'Nach unten'], ['rest', `Pausenzeit ändern (${fmtClock(blk.rest)})`], ['dropset', 'Letzten Satz entfernen'], ['remove', 'Übung entfernen', 'danger-text']]);
       if (r === 'replace') { const [id] = await pickExercises('Übung ersetzen', false); if (id) blk.exercise = id; }
@@ -150,6 +154,7 @@ function drawExercises() {
     return `<div class="card ex-block">
       <div class="ex-head">${bodyMap(exerciseValues(ex), 'auto')}<a href="#ex/${blk.exercise}">${esc(exName(blk.exercise))}</a><button class="icon" data-act="menu" data-i="${i}">⋯</button></div>
       <div class="sub">Ziel ${esc(blk.target || '-')} Wdh. · Pause ${fmtClock(blk.rest)}</div>
+      ${progBox(blk, i)}
       <div class="set-grid head"><span>Satz</span><span>Vorher</span><span>kg</span><span>Wdh.</span><span>✓</span></div>
       ${blk.sets.map((s, j) => {
         const p = prevFor(blk.exercise, j); const label = s.kind === 'W' ? 'A' : s.kind === 'D' ? 'D' : ++n;
@@ -164,6 +169,19 @@ function drawExercises() {
   }).join('') || '<p class="empty">Noch keine Übungen. Füge eine Übung hinzu.</p>';
   updateTotals();
 }
+// Progressionshinweis: vor dem Training aus der letzten Einheit, danach live aus den heutigen Sätzen
+function progBox(blk, i) {
+  const ws = blk.sets.filter((s) => s.kind !== 'W');
+  if (ws.length && ws.every((s) => s.done)) {
+    const now = progressionFrom(blk.sets.filter((s) => s.done), blk.target, blk.exercise);
+    return now ? `<div class="prog done"><span>🎯 Alle Sätze mit ${now.top}+ Wdh. geschafft. Nächstes Mal <b>${fmtNum(now.next)} kg</b>.</span></div>` : '';
+  }
+  if (blk.prog) return '';
+  const pg = progressionHint(blk.exercise, blk.target);
+  if (!pg) return '';
+  return `<div class="prog"><span>📈 Letztes Mal alle Sätze mit ${pg.top}+ Wdh. bei ${fmtNum(pg.weight)} kg. Heute <b>${fmtNum(pg.next)} kg</b> versuchen?</span>
+    <span class="prog-btns"><button class="small" data-act="progx" data-i="${i}">Nein</button><button class="small primary" data-act="prog" data-i="${i}">Übernehmen</button></span></div>`;
+}
 async function finishWorkout() {
   const A = S.active;
   const sets = [];
@@ -176,13 +194,14 @@ async function finishWorkout() {
   if (open && !(await confirmBox(`${open} Sätze sind nicht abgehakt und werden nicht gespeichert. Training trotzdem beenden?`, 'Beenden'))) return;
   try {
     const w = await api('workouts', { method: 'POST', body: { routine_id: A.routine_id, name: A.name, started: A.started, ended: new Date().toISOString(), sets } });
+    lastTargets = Object.fromEntries(A.exercises.filter((b) => b.target).map((b) => [b.exercise, b.target]));
     S.active = null; try { localStorage.removeItem('fc-active'); } catch (e) {}
     stopRest(); await reloadWorkouts(); location.hash = '#fertig/' + w.id;
   } catch (err) { toast('Speichern fehlgeschlagen: ' + err.message); }
 }
 
 // Pausentimer
-let rest = null;
+let rest = null, lastTargets = {};
 function startRest(sec) {
   stopRest();
   rest = { end: Date.now() + sec * 1000, total: sec };
@@ -382,12 +401,23 @@ function viewWorkoutDetail(id, finished = false) {
   const exs = [...new Set(w.sets.map((s) => s.exercise_id))];
   main().innerHTML = `${finished ? `<div class="card hero center"><div class="big">💪</div><h2>Stark, ${esc(w.name)} ist gespeichert.</h2></div>` : ''}
     <div class="stats"><div class="stat"><small>Dauer</small><b>${fmtDur(new Date(w.ended) - new Date(w.started))}</b></div><div class="stat"><small>Volumen</small><b>${fmtNum(volume(w.sets), 0)} kg</b></div><div class="stat"><small>Sätze</small><b>${workSets(w.sets).length}</b></div></div>
+    ${finished ? readyBox(w, exs) : ''}
     ${recs.length ? `<h2 class="sec">Neue Rekorde 🏆</h2><div class="card flush">${recs.map((r) => `<div class="ex-row"><span><b>${esc(exName(r.exId))}</b><small>${r.kind}</small></span><i class="tag gold">${r.value}</i></div>`).join('')}</div>` : ''}
     <h2 class="sec">${fmtDate(w.started, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</h2>
     ${exs.map((x) => `<a class="card hist" href="#ex/${x}/verlauf"><b>${esc(exName(x))}</b>${w.sets.filter((s) => s.exercise_id === x).map((s) => `<div class="hset"><span class="kind k${s.kind}">${s.kind === 'W' ? 'A' : s.kind === 'D' ? 'D' : s.set_no}</span><span>${fmtNum(s.weight)} kg × ${s.reps}</span><span class="sub">1RM ${fmtNum(e1rm(s.weight, s.reps))}</span></div>`).join('')}</a>`).join('')}
     <h2 class="sec">Beanspruchte Muskeln</h2><div class="card">${bodyMap(normalize(muscleLoad(w.sets)), 'both')}</div>
     ${finished ? '<a class="primary wide btn" href="#training">Fertig</a>' : '<button class="wide danger-text" id="wdel">Training löschen</button>'}`;
   if (!finished) $('#wdel').onclick = async () => { if (await confirmBox('Training löschen?', 'Löschen', true)) { await api('workouts/' + w.id, { method: 'DELETE' }); await reloadWorkouts(); location.hash = '#verlauf'; } };
+}
+// Übungen, bei denen nächstes Mal mehr Gewicht dran ist
+function readyBox(w, exs) {
+  const items = S.routines.find((r) => r.id === w.routine_id)?.items || [];
+  const list = exs.map((x) => {
+    const target = lastTargets[x] || items.find((it) => it.exercise === x)?.reps;
+    const pg = progressionFrom(w.sets.filter((s) => s.exercise_id === x), target, x);
+    return pg && { x, pg };
+  }).filter(Boolean);
+  return list.length ? `<h2 class="sec">Bereit für mehr Gewicht 📈</h2><div class="card flush">${list.map(({ x, pg }) => `<div class="ex-row"><span><b>${esc(exName(x))}</b><small>Alle Sätze mit ${pg.top}+ Wdh. bei ${fmtNum(pg.weight)} kg</small></span><i class="tag green">${fmtNum(pg.next)} kg</i></div>`).join('')}</div>` : '';
 }
 const normalize = (load) => { const mx = Math.max(1, ...Object.values(load)); return Object.fromEntries(Object.entries(load).map(([k, v]) => [k, v / mx])); };
 const groupValues = (g, v) => Object.fromEntries(g.muscles.map((m) => [m, v]));
