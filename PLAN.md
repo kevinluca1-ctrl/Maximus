@@ -25,11 +25,11 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 
 ## Phase 4: Feinschliff Tracking
 - [x] Progressionshinweis (Gewicht erhöhen, wenn oberes Wdh.-Ende erreicht): Vorschlag aus der letzten Einheit mit "Übernehmen", Live-Hinweis und Liste auf dem Abschlussbildschirm
-- [ ] Trainingsmodelle (Ober/Unter, Ganzkörper) als Vorlagen mit Empfehlungen
+- [x] Trainingsmodelle (Ober/Unter, Ganzkörper) als Vorlagen mit Empfehlungen
 
 ## Phase 5: Planeditor
 - [ ] Übungen tauschen, Sätze/Wiederholungen ändern
-- [ ] Trainingsmodelle (PPL, Ober/Unter, 2x/3x Ganzkörper) mit Empfehlungen
+- [x] Trainingsmodelle (PPL, Ober/Unter, 2x/3x Ganzkörper) mit Empfehlungen: Ansicht `#vorlagen`, "Aus Vorlage füllen" im Routinen-Editor, Wochenvolumen je Muskelgruppe gegen Richtwerte (`tools/build_templates.py`)
 
 ## Phase 6: Kalender
 - [ ] Google-Anmeldung im Add-on, Serien im Kalender "Sport" aktualisieren (derzeit Platzhalter in `gcal.py`)

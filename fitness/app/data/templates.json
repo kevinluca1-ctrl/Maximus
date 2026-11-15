@@ -1,24 +1,795 @@
 {
+ "volume": {
+  "note": "Arbeitssätze pro Woche je Muskelgruppe. Hauptmuskel zählt ganz, Hilfsmuskel halb. Richtwerte für Muskelaufbau: Einsteiger am unteren Ende, mehr bringt nur mit guter Erholung etwas.",
+  "ranges": {
+   "chest": [
+    8,
+    18
+   ],
+   "shoulders": [
+    8,
+    22
+   ],
+   "triceps": [
+    6,
+    14
+   ],
+   "back": [
+    10,
+    20
+   ],
+   "biceps": [
+    6,
+    14
+   ],
+   "forearms": [
+    0,
+    8
+   ],
+   "quads": [
+    8,
+    18
+   ],
+   "hamstrings": [
+    6,
+    14
+   ],
+   "hips": [
+    6,
+    16
+   ],
+   "calves": [
+    6,
+    12
+   ],
+   "core": [
+    4,
+    12
+   ]
+  }
+ },
  "templates": [
   {
    "id": "ppl",
-   "name": "Push / Beine / Pull (3 Tage)",
-   "status": "aktiv"
+   "name": "Push / Beine / Pull",
+   "days": 3,
+   "level": "Fortgeschrittene Einsteiger",
+   "about": "Jede Einheit hat einen klaren Schwerpunkt, jeder Muskel wird einmal pro Woche mit hohem Volumen trainiert. Basis ist dein Plan Gym A, B, C, ergänzt um etwas mehr Bein- und Wadenvolumen und weniger Bauch.",
+   "tips": [
+    "Passt gut zu festen drei Terminen pro Woche.",
+    "Fällt eine Einheit aus, fehlt eine Muskelgruppe die ganze Woche. Dann besser die Reihenfolge verschieben als auslassen."
+   ],
+   "routines": [
+    {
+     "id": "ppl_A",
+     "name": "Gym A: Push (Brust, Schultern, Trizeps)",
+     "weekday": "MO",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "chest_press",
+       "sets": 4,
+       "reps": "6-10",
+       "rest": 90
+      },
+      {
+       "exercise": "incline_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_crossover",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 75
+      },
+      {
+       "exercise": "shoulder_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_lateral_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 75
+      },
+      {
+       "exercise": "triceps_pushdown",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 75
+      },
+      {
+       "exercise": "overhead_triceps",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_crunch",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 75
+      },
+      {
+       "exercise": "pallof_press",
+       "sets": 2,
+       "reps": "10 pro Seite",
+       "rest": 75
+      }
+     ]
+    },
+    {
+     "id": "ppl_B",
+     "name": "Gym B: Beine",
+     "weekday": "WE",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "leg_press",
+       "sets": 4,
+       "reps": "6-10",
+       "rest": 90
+      },
+      {
+       "exercise": "seated_leg_curl",
+       "sets": 4,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "leg_extension",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_pull_through",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hip_abduction",
+       "sets": 2,
+       "reps": "12-15",
+       "rest": 75
+      },
+      {
+       "exercise": "calf_raise",
+       "sets": 4,
+       "reps": "12-15",
+       "rest": 75
+      },
+      {
+       "exercise": "seated_calf",
+       "sets": 2,
+       "reps": "12-15",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "ppl_C",
+     "name": "Gym C: Pull (Rücken, Bizeps)",
+     "weekday": "FR",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "lat_pulldown_wide",
+       "sets": 4,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "seated_cable_row",
+       "sets": 3,
+       "reps": "8-10",
+       "rest": 75
+      },
+      {
+       "exercise": "single_arm_pulldown",
+       "sets": 3,
+       "reps": "10-12 pro Seite",
+       "rest": 75
+      },
+      {
+       "exercise": "straight_arm_pulldown",
+       "sets": 2,
+       "reps": "12-15",
+       "rest": 75
+      },
+      {
+       "exercise": "face_pull",
+       "sets": 3,
+       "reps": "15",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hammer_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "captains_chair_knee_raise",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_woodchop",
+       "sets": 2,
+       "reps": "12 pro Seite",
+       "rest": 75
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "upper_lower",
    "name": "Ober-/Unterkörper",
-   "status": "geplant"
+   "days": 4,
+   "level": "Fortgeschrittene",
+   "about": "Vier Einheiten im Wechsel Oberkörper und Unterkörper. Jeder Muskel wird zweimal pro Woche trainiert, die einzelnen Einheiten bleiben kürzer.",
+   "tips": [
+    "Zwischen den beiden Beintagen mindestens 48 Stunden Pause.",
+    "Variante A und B nutzen unterschiedliche Übungen für mehr Abwechslung."
+   ],
+   "routines": [
+    {
+     "id": "ul1",
+     "name": "Oberkörper A",
+     "weekday": "MO",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "chest_press",
+       "sets": 3,
+       "reps": "6-10",
+       "rest": 90
+      },
+      {
+       "exercise": "seated_cable_row",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "shoulder_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "lat_pulldown_wide",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_lateral_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "triceps_pushdown",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "ul2",
+     "name": "Unterkörper A",
+     "weekday": "TU",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "leg_press",
+       "sets": 4,
+       "reps": "6-10",
+       "rest": 120
+      },
+      {
+       "exercise": "seated_leg_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hip_thrust_machine",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "leg_extension",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "calf_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_crunch",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "ul3",
+     "name": "Oberkörper B",
+     "weekday": "TH",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "incline_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "chest_supported_row",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "single_arm_pulldown",
+       "sets": 3,
+       "reps": "10-12 pro Seite",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_crossover",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "face_pull",
+       "sets": 3,
+       "reps": "15",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_lateral_raise",
+       "sets": 2,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "overhead_triceps",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "hammer_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "ul4",
+     "name": "Unterkörper B",
+     "weekday": "FR",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "hack_squat",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 120
+      },
+      {
+       "exercise": "lying_leg_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_pull_through",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hip_abduction",
+       "sets": 2,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "seated_calf",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "pallof_press",
+       "sets": 3,
+       "reps": "10 pro Seite",
+       "rest": 60
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "full2",
    "name": "2x Ganzkörper",
-   "status": "geplant"
+   "days": 2,
+   "level": "Einsteiger oder wenig Zeit",
+   "about": "Zwei längere Einheiten, jede trainiert den ganzen Körper. Mit zwei Terminen pro Woche erreicht so trotzdem jeder Muskel das Mindestvolumen.",
+   "tips": [
+    "Zwischen den Einheiten zwei bis drei Tage Pause, etwa Montag und Donnerstag.",
+    "Pausen eher kurz halten, damit die Einheit in 85 Minuten passt."
+   ],
+   "routines": [
+    {
+     "id": "fb2a",
+     "name": "Ganzkörper A",
+     "weekday": "MO",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "leg_press",
+       "sets": 3,
+       "reps": "6-10",
+       "rest": 120
+      },
+      {
+       "exercise": "chest_press",
+       "sets": 3,
+       "reps": "6-10",
+       "rest": 90
+      },
+      {
+       "exercise": "lat_pulldown_wide",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "seated_leg_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "shoulder_press",
+       "sets": 2,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "seated_cable_row",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_lateral_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "triceps_pushdown",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "leg_extension",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "calf_raise",
+       "sets": 4,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "pallof_press",
+       "sets": 2,
+       "reps": "10 pro Seite",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "fb2b",
+     "name": "Ganzkörper B",
+     "weekday": "TH",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "hack_squat",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 120
+      },
+      {
+       "exercise": "incline_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "chest_supported_row",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hip_thrust_machine",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "single_arm_pulldown",
+       "sets": 2,
+       "reps": "10-12 pro Seite",
+       "rest": 75
+      },
+      {
+       "exercise": "lying_leg_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_crossover",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "face_pull",
+       "sets": 2,
+       "reps": "15",
+       "rest": 60
+      },
+      {
+       "exercise": "overhead_triceps",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "hammer_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_crunch",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "full3",
    "name": "3x Ganzkörper",
-   "status": "geplant"
+   "days": 3,
+   "level": "Einsteiger und Fortgeschrittene",
+   "about": "Drei kürzere Ganzkörper-Einheiten. Jeder Muskel wird dreimal pro Woche mit wenigen Sätzen trainiert, das verteilt die Belastung gut.",
+   "tips": [
+    "Jede Einheit ist ähnlich anstrengend, ein ausgefallener Termin wiegt weniger schwer.",
+    "Die schweren Übungen am Anfang wechseln je Einheit, damit Gelenke und Muskeln Abwechslung bekommen."
+   ],
+   "routines": [
+    {
+     "id": "fb3a",
+     "name": "Ganzkörper A",
+     "weekday": "MO",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "leg_press",
+       "sets": 3,
+       "reps": "6-10",
+       "rest": 120
+      },
+      {
+       "exercise": "chest_press",
+       "sets": 3,
+       "reps": "6-10",
+       "rest": 90
+      },
+      {
+       "exercise": "lat_pulldown_wide",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "seated_leg_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_lateral_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      },
+      {
+       "exercise": "triceps_pushdown",
+       "sets": 2,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "cable_crunch",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "fb3b",
+     "name": "Ganzkörper B",
+     "weekday": "WE",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "hack_squat",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 120
+      },
+      {
+       "exercise": "incline_press",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "seated_cable_row",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "hip_thrust_machine",
+       "sets": 3,
+       "reps": "8-12",
+       "rest": 90
+      },
+      {
+       "exercise": "shoulder_press",
+       "sets": 2,
+       "reps": "8-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "calf_raise",
+       "sets": 3,
+       "reps": "12-15",
+       "rest": 60
+      }
+     ]
+    },
+    {
+     "id": "fb3c",
+     "name": "Ganzkörper C",
+     "weekday": "FR",
+     "start": "18:15",
+     "end": "19:40",
+     "items": [
+      {
+       "exercise": "lying_leg_curl",
+       "sets": 3,
+       "reps": "10-12",
+       "rest": 75
+      },
+      {
+       "exercise": "cable_crossover",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "single_arm_pulldown",
+       "sets": 3,
+       "reps": "10-12 pro Seite",
+       "rest": 75
+      },
+      {
+       "exercise": "leg_extension",
+       "sets": 3,
+       "reps": "10-15",
+       "rest": 60
+      },
+      {
+       "exercise": "face_pull",
+       "sets": 3,
+       "reps": "15",
+       "rest": 60
+      },
+      {
+       "exercise": "overhead_triceps",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "hammer_curl",
+       "sets": 2,
+       "reps": "10-12",
+       "rest": 60
+      },
+      {
+       "exercise": "pallof_press",
+       "sets": 2,
+       "reps": "10 pro Seite",
+       "rest": 60
+      }
+     ]
+    }
+   ]
   }
  ]
 }

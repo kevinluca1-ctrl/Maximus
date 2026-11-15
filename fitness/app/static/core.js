@@ -192,3 +192,19 @@ export function progressionFrom(sets, target, exId) {
   return { weight, next: Math.round((weight + step) * 100) / 100, step, top };
 }
 export const progressionHint = (exId, target) => progressionFrom(previousSets(exId), target, exId);
+
+// ---------- Wochenvolumen ----------
+// Arbeitssätze pro Woche je Gruppe. Je Übung zählt eine Gruppe ganz (Hauptmuskel) oder halb (Hilfsmuskel), nie doppelt.
+export function weeklyVolume(routines) {
+  const v = Object.fromEntries(GROUPS.map((g) => [g.id, 0]));
+  for (const r of routines) for (const it of r.items) {
+    const m = S.byId[it.exercise]?.muscles; if (!m) continue;
+    for (const g of GROUPS) {
+      const f = m.primary.some((x) => g.muscles.includes(x)) ? 1 : m.secondary.some((x) => g.muscles.includes(x)) ? 0.5 : 0;
+      v[g.id] += f * (+it.sets || 0);
+    }
+  }
+  return v;
+}
+let tplCache = null;
+export const loadTemplates = async () => (tplCache ||= await api('templates'));

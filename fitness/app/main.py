@@ -134,6 +134,11 @@ def put_routines(body: dict = Body(...)):
     return {"routines": r}
 
 
+@app.get("/api/templates")
+def templates():
+    return load_json("templates.json")
+
+
 @app.post("/api/routines/reset")
 def reset_routines():
     kv_del("routines")

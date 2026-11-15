@@ -2,7 +2,7 @@
 import {
   api, S, MUSCLES, GROUPS, DAYS, loadAll, reloadWorkouts, esc, exName, fmtDate, fmtNum, fmtDur, fmtClock, isoDay,
   e1rm, workSets, volume, exerciseHistory, exerciseRecords, newRecords, previousSets, muscleLoad, groupLoad, setsSince,
-  recovery, mondayOf, weekStreak, nextRoutine, progressionFrom, progressionHint,
+  recovery, mondayOf, weekStreak, nextRoutine, progressionFrom, progressionHint, weeklyVolume, loadTemplates,
 } from './core.js';
 import { bodyMap, exerciseValues } from './bodymap.js';
 import { lineChart, barChart, radarChart } from './charts.js';
@@ -235,7 +235,7 @@ function viewTraining() {
       <h2>${esc(nx.routine.name)}</h2><div class="sub">${DAYS[nx.routine.weekday]}, ${nx.routine.start} bis ${nx.routine.end} · ${nx.routine.items.length} Übungen</div>
       <button class="primary wide" data-start="${nx.routine.id}">Training starten</button></div>` : ''}
     <button class="wide" data-start="">+ Freies Training starten</button>
-    <h2 class="sec">Routinen <a href="#routine/neu" class="link">+ Neue Routine</a></h2>
+    <h2 class="sec">Routinen <span class="links"><a href="#vorlagen" class="link">Modelle</a><a href="#routine/neu" class="link">+ Neue Routine</a></span></h2>
     ${S.routines.map((r) => `<div class="card routine">
       <div class="r-head"><div><h3>${esc(r.name)}</h3><div class="sub">${r.weekday ? DAYS[r.weekday] + ', ' + r.start + ' bis ' + r.end : 'Kein fester Tag'}</div></div><a class="icon" href="#routine/${r.id}">✎</a></div>
       <div class="sub list">${r.items.map((it) => esc(exName(it.exercise))).join(' · ')}</div>
@@ -259,15 +259,23 @@ function viewRoutine(id) {
         <div class="three"><label>Sätze<input data-k="sets" data-i="${i}" type="number" min="1" value="${it.sets}"></label>
         <label>Wdh.<input data-k="reps" data-i="${i}" value="${esc(it.reps)}"></label>
         <label>Pause (s)<input data-k="rest" data-i="${i}" type="number" step="15" value="${it.rest}"></label></div></div>`).join('')}
-      <button class="wide" id="radd">+ Übung hinzufügen</button>
+      <div class="two"><button class="wide" id="radd">+ Übung hinzufügen</button><button class="wide" id="rtpl">Aus Vorlage füllen</button></div>
+      <h2 class="sec">Wochenvolumen des Plans</h2><div class="card" id="rvol"></div>
       <button class="primary wide" id="rsave">Speichern</button>
       ${isNew ? '' : '<button class="wide danger-text" id="rdel">Routine löschen</button>'}
       <p class="sub center">Änderungen am Tag und an der Uhrzeit landen erst mit dem Kalender-Sync (Phase 6) im Google-Kalender.</p>`;
+    drawVol();
+  };
+  // Volumen des ganzen Plans mit dieser Routine im aktuellen Bearbeitungsstand
+  const drawVol = async () => {
+    const T = await loadTemplates(); const box = $('#rvol'); if (!box) return;
+    const plan = isNew ? [...S.routines, R] : S.routines.map((r) => (r.id === R.id ? R : r));
+    box.innerHTML = volumeBars(weeklyVolume(plan), T.volume) + `<p class="sub">${esc(T.volume.note)} <a class="link" href="#vorlagen">Trainingsmodelle</a></p>`;
   };
   draw();
   main().oninput = (e) => {
     const t = e.target;
-    if (t.dataset.k) R.items[t.dataset.i][t.dataset.k] = t.dataset.k === 'reps' ? t.value : +t.value;
+    if (t.dataset.k) { R.items[t.dataset.i][t.dataset.k] = t.dataset.k === 'reps' ? t.value : +t.value; if (t.dataset.k === 'sets') drawVol(); }
     if (t.id === 'rn') R.name = t.value; if (t.id === 'rd') R.weekday = t.value; if (t.id === 'rs') R.start = t.value; if (t.id === 're') R.end = t.value;
   };
   main().onclick = async (e) => {
@@ -275,7 +283,14 @@ function viewRoutine(id) {
     if (t.dataset.mv) { const i = +t.dataset.i, j = i + +t.dataset.mv; if (j >= 0 && j < R.items.length) [R.items[i], R.items[j]] = [R.items[j], R.items[i]]; draw(); }
     else if (t.dataset.rm) { R.items.splice(+t.dataset.rm, 1); draw(); }
     else if (t.id === 'radd') { (await pickExercises()).forEach((x) => R.items.push({ exercise: x, sets: 3, reps: '8-12', rest: S.settings.rest_default })); draw(); }
-    else if (t.id === 'rsave') {
+    else if (t.id === 'rtpl') {
+      const T = await loadTemplates();
+      const opts = T.templates.flatMap((m) => m.routines.map((r) => [`${m.id}|${r.id}`, `${m.name}: ${r.name} (${r.items.length} Übungen)`]));
+      const k = await sheet('Vorlage wählen', opts); if (!k) return;
+      const [mid, rid] = k.split('|'); const src = T.templates.find((m) => m.id === mid).routines.find((r) => r.id === rid);
+      if (R.items.length && !(await confirmBox('Die Übungen dieser Routine durch die Vorlage ersetzen?', 'Ersetzen'))) return;
+      R.items = structuredClone(src.items); if (!R.name.trim()) R.name = src.name; draw();
+    } else if (t.id === 'rsave') {
       if (!R.name.trim()) return toast('Bitte einen Namen eingeben');
       const list = isNew ? [...S.routines, R] : S.routines.map((r) => (r.id === R.id ? R : r));
       S.routines = (await api('routines', { method: 'PUT', body: { routines: list } })).routines;
@@ -284,6 +299,39 @@ function viewRoutine(id) {
       S.routines = (await api('routines', { method: 'PUT', body: { routines: S.routines.filter((r) => r.id !== R.id) } })).routines;
       location.hash = '#training';
     }
+  };
+}
+
+// Balken je Muskelgruppe: grüner Bereich = Richtwert, Strich = Plan
+function volumeBars(vol, rec) {
+  const max = Math.max(24, ...Object.values(vol)) * 1.05;
+  const pct = (x) => (100 * x / max).toFixed(1) + '%';
+  return `<div class="vol">${GROUPS.map((g) => {
+    const v = vol[g.id], [lo, hi] = rec.ranges[g.id] || [0, 0];
+    const st = v < lo ? 'low' : v > hi ? 'high' : 'ok';
+    return `<div class="vrow ${st}"><span>${esc(g.short || g.name)}</span><div class="vbar"><i class="band" style="left:${pct(lo)};width:${pct(hi - lo)}"></i><i class="val" style="width:${pct(v)}"></i></div><b>${fmtNum(v)}</b></div>`;
+  }).join('')}</div><div class="vlegend"><span><i class="band"></i>Richtwert</span><span class="low">unter Richtwert</span><span class="high">darüber</span></div>`;
+}
+async function viewTemplates() {
+  setTitle('Trainingsmodelle', '#training');
+  const T = await loadTemplates();
+  const daysOf = (m) => m.routines.map((r) => r.weekday ? DAYS[r.weekday].slice(0, 2) : '-').join(', ');
+  main().innerHTML = `<p class="sub">Vorlagen nur mit Kabel, Maschinen und Kurzhanteln. Die Balken zeigen die Arbeitssätze pro Woche je Muskelgruppe im Vergleich zum Richtwert.</p>
+    <div class="card"><div class="r-head"><b>Dein aktueller Plan</b><span class="sub">${S.routines.length} Routinen</span></div>${volumeBars(weeklyVolume(S.routines), T.volume)}</div>
+    ${T.templates.map((m) => `<div class="card tpl">
+      <div class="r-head"><div><h3>${esc(m.name)}</h3><div class="sub">${m.days} Tage pro Woche (${daysOf(m)}) · ${esc(m.level)}</div></div></div>
+      <p>${esc(m.about)}</p>
+      <details><summary>Tage und Übungen</summary>${m.routines.map((r) => `<div class="tday"><b>${esc(r.name)}</b> <span class="sub">${r.items.reduce((a, it) => a + it.sets, 0)} Sätze</span><div class="sub list">${r.items.map((it) => `${it.sets} × ${esc(exName(it.exercise))}`).join(' · ')}</div></div>`).join('')}</details>
+      <details><summary>Volumen je Muskelgruppe</summary>${volumeBars(weeklyVolume(m.routines), T.volume)}</details>
+      <ul class="tips">${m.tips.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+      <button class="primary wide" data-apply="${m.id}">Als Plan übernehmen</button></div>`).join('')}
+    <p class="sub">${esc(T.volume.note)}</p>`;
+  main().onclick = async (e) => {
+    const b = e.target.closest('[data-apply]'); if (!b) return;
+    const m = T.templates.find((x) => x.id === b.dataset.apply);
+    if (!(await confirmBox(`Deine Routinen durch „${m.name}“ ersetzen? Dein Trainingsverlauf bleibt erhalten.`, 'Übernehmen'))) return;
+    S.routines = (await api('routines', { method: 'PUT', body: { routines: structuredClone(m.routines) } })).routines;
+    toast(`${m.name} übernommen`); location.hash = '#training';
   };
 }
 
@@ -519,12 +567,12 @@ function route() {
   clearInterval(tick); main().onclick = null; main().oninput = null; main().onchange = null;
   const h = location.hash || '#training';
   const [p, a, b] = h.slice(1).split('/');
-  const tab = { training: 'training', workout: 'training', routine: 'training', uebungen: 'uebungen', ex: 'uebungen', verlauf: 'verlauf', w: 'verlauf', fertig: 'training' }[p] || 'profil';
+  const tab = { training: 'training', workout: 'training', routine: 'training', vorlagen: 'training', uebungen: 'uebungen', ex: 'uebungen', verlauf: 'verlauf', w: 'verlauf', fertig: 'training' }[p] || 'profil';
   $$('nav a').forEach((x) => x.classList.toggle('on', x.dataset.tab === tab));
   document.body.classList.toggle('in-workout', p === 'workout');
   window.scrollTo(0, 0);
   ({
-    training: viewTraining, workout: viewWorkout, routine: () => viewRoutine(a), uebungen: viewExercises,
+    training: viewTraining, workout: viewWorkout, routine: () => viewRoutine(a), vorlagen: viewTemplates, uebungen: viewExercises,
     ex: () => viewExercise(a, b), verlauf: viewHistory, w: () => viewWorkoutDetail(a), fertig: () => viewWorkoutDetail(a, true),
     profil: viewProfile, erholung: viewRecovery, messen: viewMeasure, platten: viewPlates, einstellungen: viewSettings,
   }[p] || viewTraining)();
