@@ -7,6 +7,7 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 - [x] Server mit Datenbank (Plan, Gewichts-Logs), Schnittstellen unter `api/`
 - [x] Übungsdaten der 24 Planübungen (DE/EN, Muskeln, Griff, Anleitung, Alternativen als Namen)
 - [x] Oberfläche: Plan-Ansicht, Übungssuche, Detailseite mit 3D-Viewer, Hell/Dunkel
+- [x] Docker-Image lokal gebaut und getestet (amd64, Ingress-Präfix, `/data`); Abhängigkeiten so gepinnt, dass es für aarch64 und armv7 fertige Wheels gibt
 - [ ] GitHub-Repo anlegen (Kevin legt leeres Repo an, dann Push) und in HA installieren
 
 ## Phase 2: Übungsbibliothek und Funktionsumfang (Vorbild Lyfta/Hevy)
