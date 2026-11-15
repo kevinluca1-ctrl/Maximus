@@ -272,10 +272,40 @@ def export_csv():
                     headers={"Content-Disposition": "attachment; filename=fitness-export.csv"})
 
 
-# ---------- Google-Kalender (Phase 6) ----------
+# ---------- Google-Kalender ----------
+gcal.setup(DATA_DIR)
+
+
 @app.get("/api/google/status")
 def google_status():
     return gcal.status()
+
+
+@app.post("/api/google/auth")
+def google_auth():
+    return gcal.auth_url()
+
+
+@app.post("/api/google/connect")
+def google_connect(body: dict = Body(...)):
+    return gcal.exchange(body.get("url", ""))
+
+
+@app.post("/api/google/disconnect")
+def google_disconnect():
+    return gcal.disconnect()
+
+
+@app.post("/api/google/sync")
+def google_sync(body: dict = Body(default={})):
+    names = {e["id"]: e["name_de"] for e in exercises()["exercises"]}
+    dry = bool(body.get("dry", True))
+    res = gcal.sync(get_routines(), names, dry=dry)
+    if res["routine_updates"] and not dry:
+        # Beim ersten Verknüpfen übernommene Kalenderzeiten in die Routinen schreiben
+        kv_set("routines", [{**r, **res["routine_updates"].get(r["id"], {})} for r in get_routines()])
+    res["routines"] = get_routines()
+    return res
 
 
 # ---------- Frontend ----------

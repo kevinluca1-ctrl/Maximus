@@ -263,7 +263,7 @@ function viewRoutine(id) {
       <h2 class="sec">Wochenvolumen des Plans</h2><div class="card" id="rvol"></div>
       <button class="primary wide" id="rsave">Speichern</button>
       ${isNew ? '' : '<button class="wide danger-text" id="rdel">Routine löschen</button>'}
-      <p class="sub center">Änderungen am Tag und an der Uhrzeit landen erst mit dem Kalender-Sync (Phase 6) im Google-Kalender.</p>`;
+      <p class="sub center">Ist der Google-Kalender in den Einstellungen verbunden, werden Tag, Uhrzeit und Übungen nach dem Speichern abgeglichen.</p>`;
     drawVol();
   };
   // Volumen des ganzen Plans mit dieser Routine im aktuellen Bearbeitungsstand
@@ -302,10 +302,10 @@ function viewRoutine(id) {
       if (!R.name.trim()) return toast('Bitte einen Namen eingeben');
       const list = isNew ? [...S.routines, R] : S.routines.map((r) => (r.id === R.id ? R : r));
       S.routines = (await api('routines', { method: 'PUT', body: { routines: list } })).routines;
-      toast('Routine gespeichert'); location.hash = '#training';
+      toast('Routine gespeichert'); location.hash = '#training'; autoSync();
     } else if (t.id === 'rdel' && await confirmBox(`Routine „${R.name}“ löschen?`, 'Löschen', true)) {
       S.routines = (await api('routines', { method: 'PUT', body: { routines: S.routines.filter((r) => r.id !== R.id) } })).routines;
-      location.hash = '#training';
+      location.hash = '#training'; autoSync();
     }
   };
 }
@@ -339,7 +339,7 @@ async function viewTemplates() {
     const m = T.templates.find((x) => x.id === b.dataset.apply);
     if (!(await confirmBox(`Deine Routinen durch „${m.name}“ ersetzen? Dein Trainingsverlauf bleibt erhalten.`, 'Übernehmen'))) return;
     S.routines = (await api('routines', { method: 'PUT', body: { routines: structuredClone(m.routines) } })).routines;
-    toast(`${m.name} übernommen`); location.hash = '#training';
+    toast(`${m.name} übernommen`); location.hash = '#training'; autoSync();
   };
 }
 
@@ -553,20 +553,76 @@ function viewPlates() {
 async function viewSettings() {
   setTitle('Einstellungen', '#profil');
   const st = S.settings;
-  let g = { connected: false, note: '' };
-  try { g = await api('google/status'); } catch (e) {}
   main().innerHTML = `<div class="card form">
     <label>Standard-Pausenzeit<select id="sr">${[45, 60, 75, 90, 120, 150, 180].map((s) => `<option value="${s}" ${st.rest_default === s ? 'selected' : ''}>${fmtClock(s)}</option>`).join('')}</select></label>
     <label class="check-row"><input type="checkbox" id="sv" ${st.rest_vibrate ? 'checked' : ''}> Vibration am Ende der Pause</label>
     <label>Design<select id="st">${[['auto', 'Wie das Gerät'], ['light', 'Hell'], ['dark', 'Dunkel']].map(([k, l]) => `<option value="${k}" ${st.theme === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>
-    <h2 class="sec">Google-Kalender</h2><div class="card"><b>${g.connected ? 'Verbunden' : 'Noch nicht verbunden'}</b><div class="sub">${esc(g.note || '')}</div></div>
+    <h2 class="sec">Google-Kalender</h2><div class="card gcal" id="gc"><p class="sub">Lädt …</p></div>
     <h2 class="sec">Daten</h2><button class="wide danger-text" id="rr">Routinen auf den Ausgangsplan zurücksetzen</button>`;
   main().onchange = (e) => {
     if (e.target.id === 'sr') saveSettings({ rest_default: +e.target.value });
     if (e.target.id === 'sv') saveSettings({ rest_vibrate: e.target.checked });
     if (e.target.id === 'st') saveSettings({ theme: e.target.value });
   };
-  $('#rr').onclick = async () => { if (await confirmBox('Alle Routinen auf Gym A, B und C zurücksetzen?', 'Zurücksetzen', true)) { S.routines = (await api('routines/reset', { method: 'POST' })).routines; toast('Zurückgesetzt'); } };
+  $('#rr').onclick = async () => { if (await confirmBox('Alle Routinen auf Gym A, B und C zurücksetzen?', 'Zurücksetzen', true)) { S.routines = (await api('routines/reset', { method: 'POST' })).routines; toast('Zurückgesetzt'); autoSync(); } };
+  googleCard();
+}
+
+// ---------- Google-Kalender ----------
+const SYNC_ICON = { pull: '⬇', adopt: '🔗', create: '＋', update: '✎', move: '⇄', end: '⏹', ok: '✓' };
+const syncList = (actions) => `<div class="sync-list">${actions.map((a) => `<div class="sync-row ${a.kind}"><i>${SYNC_ICON[a.kind] || '•'}</i><span><b>${esc(a.name)}</b><small>${esc(a.text)}</small></span></div>`).join('')}</div>`;
+async function googleCard() {
+  const box = $('#gc'); if (!box) return;
+  let g;
+  try { g = await api('google/status'); } catch (e) { box.innerHTML = `<p class="sub">Status nicht abrufbar (${esc(e.message)}).</p>`; return; }
+  if (!$('#gc')) return;
+  if (!g.configured) {
+    box.innerHTML = `<b>Nicht eingerichtet</b><div class="sub">${esc(g.note)}</div>
+      <ol class="steps"><li>In der Google Cloud Console ein Projekt anlegen und die <b>Google Calendar API</b> aktivieren.</li>
+      <li>OAuth-Zustimmungsbildschirm: Typ „Extern“, danach auf <b>„In Produktion“</b> stellen. Im Testmodus läuft die Anmeldung nach 7 Tagen ab.</li>
+      <li>Anmeldedaten: <b>OAuth-Client-ID</b> vom Typ <b>„Desktop-App“</b> anlegen.</li>
+      <li>Client-ID und Client-Secret in Home Assistant unter Add-on „Fitness Coach“, Konfiguration eintragen und das Add-on neu starten.</li></ol>`;
+    return;
+  }
+  if (!g.connected) {
+    let url = '#';
+    try { url = (await api('google/auth', { method: 'POST' })).url; } catch (e) { box.innerHTML = `<p class="sub">${esc(e.message)}</p>`; return; }
+    box.innerHTML = `<b>Noch nicht verbunden</b>
+      <ol class="steps"><li><a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener">Bei Google anmelden</a></li>
+      <li>Nach der Anmeldung zeigt der Browser eine Fehlerseite unter <code>127.0.0.1</code>. Das ist richtig. Kopiere die <b>komplette Adresse</b> aus der Adresszeile.</li>
+      <li><div class="form"><input id="gurl" placeholder="http://127.0.0.1:8765/?state=…&code=…" autocomplete="off"></div><button class="primary wide" id="gconn">Verbinden</button></li></ol>`;
+    $('#gconn').onclick = async () => {
+      try { await api('google/connect', { method: 'POST', body: { url: $('#gurl').value } }); toast('Mit Google verbunden'); googleCard(); }
+      catch (e) { toast(e.message); }
+    };
+    return;
+  }
+  box.innerHTML = `<div class="r-head"><div><b>Verbunden</b><div class="sub">${g.last_sync ? `Zuletzt abgeglichen ${fmtDate(g.last_sync, { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })} · ${g.linked} Serien verknüpft` : 'Noch nicht abgeglichen. Prüfe zuerst die Vorschau.'}</div></div></div>
+    <div id="gprev"></div>
+    <div class="two"><button class="wide" id="gpre">Vorschau</button><button class="wide danger-text" id="gdis">Trennen</button></div>
+    <p class="sub">Routinen mit festem Tag werden als wöchentliche Serien im Kalender abgeglichen. Eigene Notizen in den Terminen bleiben erhalten, nur die Übungsliste wird ersetzt. Andere Termine werden nicht verändert.</p>`;
+  $('#gpre').onclick = async () => {
+    const pv = $('#gprev'); pv.innerHTML = '<p class="sub">Prüfe den Kalender …</p>';
+    try {
+      const r = await api('google/sync', { method: 'POST', body: { dry: true } });
+      pv.innerHTML = syncList(r.actions) + (r.changes ? '<button class="primary wide" id="gsync">Änderungen übernehmen</button>' : '<p class="sub">Alles ist aktuell.</p>');
+      if (r.changes) $('#gsync').onclick = async () => {
+        try { const x = await api('google/sync', { method: 'POST', body: { dry: false } }); S.routines = x.routines; toast(`${x.changes} Änderungen übernommen`); googleCard(); }
+        catch (e) { toast(e.message); }
+      };
+    } catch (e) { pv.innerHTML = `<p class="sub">${esc(e.message)}</p>`; }
+  };
+  $('#gdis').onclick = async () => { if (await confirmBox('Verbindung zu Google trennen? Die Termine im Kalender bleiben bestehen.', 'Trennen', true)) { await api('google/disconnect', { method: 'POST' }); googleCard(); } };
+}
+// Nach Änderungen an Routinen automatisch abgleichen, aber erst nachdem einmal mit Vorschau abgeglichen wurde
+async function autoSync() {
+  try {
+    const g = await api('google/status');
+    if (!g.connected || !g.last_sync) return;
+    const r = await api('google/sync', { method: 'POST', body: { dry: false } });
+    S.routines = r.routines;
+    if (r.changes) toast('Google-Kalender aktualisiert');
+  } catch (e) { toast('Kalender-Abgleich fehlgeschlagen: ' + e.message); }
 }
 
 // ---------- Router ----------

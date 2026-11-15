@@ -32,7 +32,8 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 - [x] Trainingsmodelle (PPL, Ober/Unter, 2x/3x Ganzkörper) mit Empfehlungen: Ansicht `#vorlagen`, "Aus Vorlage füllen" im Routinen-Editor, Wochenvolumen je Muskelgruppe gegen Richtwerte (`tools/build_templates.py`)
 
 ## Phase 6: Kalender
-- [ ] Google-Anmeldung im Add-on, Serien im Kalender "Sport" aktualisieren (derzeit Platzhalter in `gcal.py`)
+- [x] Google-Anmeldung im Add-on (Desktop-App-Client, Loopback-Redirect mit PKCE, Adresse einfügen), Serien im Kalender "Sport" aktualisieren mit Vorschau, automatischer Abgleich nach dem Speichern, Tests in `tests/test_gcal.py`
+- [ ] Echten Abgleich mit dem eigenen Google-Konto durchführen (braucht Client-ID und -Secret)
 
 ## Phase 7: Abnahme
 - [ ] Test auf dem Handy in HA, Installationsanleitung
