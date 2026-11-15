@@ -28,7 +28,7 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 - [x] Trainingsmodelle (Ober/Unter, Ganzkörper) als Vorlagen mit Empfehlungen
 
 ## Phase 5: Planeditor
-- [ ] Übungen tauschen, Sätze/Wiederholungen ändern
+- [x] Übungen tauschen (Alternativen zuerst), Sätze/Wiederholungen ändern
 - [x] Trainingsmodelle (PPL, Ober/Unter, 2x/3x Ganzkörper) mit Empfehlungen: Ansicht `#vorlagen`, "Aus Vorlage füllen" im Routinen-Editor, Wochenvolumen je Muskelgruppe gegen Richtwerte (`tools/build_templates.py`)
 
 ## Phase 6: Kalender

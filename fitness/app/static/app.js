@@ -255,7 +255,7 @@ function viewRoutine(id) {
       <label>Tag<select id="rd"><option value="">Kein fester Tag</option>${Object.entries(DAYS).map(([k, v]) => `<option value="${k}" ${R.weekday === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
       <div class="two"><label>Beginn<input id="rs" type="time" value="${R.start}"></label><label>Ende<input id="re" type="time" value="${R.end}"></label></div></div>
       ${R.items.map((it, i) => `<div class="card item"><div class="ex-head">${bodyMap(exerciseValues(S.byId[it.exercise]), 'auto')}<b>${esc(exName(it.exercise))}</b>
-        <button class="icon" data-mv="-1" data-i="${i}">↑</button><button class="icon" data-mv="1" data-i="${i}">↓</button><button class="icon" data-rm="${i}">✕</button></div>
+        <button class="icon" data-sw="${i}" title="Übung tauschen">⇄</button><button class="icon" data-mv="-1" data-i="${i}">↑</button><button class="icon" data-mv="1" data-i="${i}">↓</button><button class="icon" data-rm="${i}">✕</button></div>
         <div class="three"><label>Sätze<input data-k="sets" data-i="${i}" type="number" min="1" value="${it.sets}"></label>
         <label>Wdh.<input data-k="reps" data-i="${i}" value="${esc(it.reps)}"></label>
         <label>Pause (s)<input data-k="rest" data-i="${i}" type="number" step="15" value="${it.rest}"></label></div></div>`).join('')}
@@ -282,6 +282,14 @@ function viewRoutine(id) {
     const t = e.target;
     if (t.dataset.mv) { const i = +t.dataset.i, j = i + +t.dataset.mv; if (j >= 0 && j < R.items.length) [R.items[i], R.items[j]] = [R.items[j], R.items[i]]; draw(); }
     else if (t.dataset.rm) { R.items.splice(+t.dataset.rm, 1); draw(); }
+    else if (t.dataset.sw) {
+      // Tauschen: zuerst die Alternativen der Übung, sonst freie Auswahl. Sätze, Wdh. und Pause bleiben.
+      const it = R.items[+t.dataset.sw];
+      const alts = (S.byId[it.exercise]?.alternatives || []).filter((a) => S.byId[a]);
+      let id = alts.length ? await sheet(`${exName(it.exercise)} tauschen`, [...alts.map((a) => [a, `${exName(a)} (${S.byId[a].equipment})`]), ['*', 'Andere Übung suchen …']]) : '*';
+      if (id === '*') [id] = await pickExercises('Übung tauschen', false);
+      if (id) { it.exercise = id; draw(); }
+    }
     else if (t.id === 'radd') { (await pickExercises()).forEach((x) => R.items.push({ exercise: x, sets: 3, reps: '8-12', rest: S.settings.rest_default })); draw(); }
     else if (t.id === 'rtpl') {
       const T = await loadTemplates();
