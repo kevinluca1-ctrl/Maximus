@@ -3,25 +3,59 @@
  "sessions": [
   {
    "id": "A",
-   "title": "Gym A: Push (Brust, Schultern, Trizeps)",
+   "title": "Gym A: Beine (Oberschenkel, Gesäß, Waden)",
    "weekday": "MO",
    "start": "18:15",
    "end": "19:40",
    "items": [
     {
-     "exercise": "chest_press",
-     "sets": 4,
-     "reps": "6-10"
+     "exercise": "treadmill",
+     "sets": 1,
+     "reps": "10 Min"
     },
     {
-     "exercise": "incline_press",
+     "exercise": "leg_press",
      "sets": 3,
      "reps": "8-12"
     },
     {
-     "exercise": "cable_crossover",
+     "exercise": "db_rdl",
      "sets": 3,
-     "reps": "10-15"
+     "reps": "8-12"
+    },
+    {
+     "exercise": "hack_squat",
+     "sets": 3,
+     "reps": "8-12"
+    },
+    {
+     "exercise": "calf_raise",
+     "sets": 3,
+     "reps": "12-15"
+    },
+    {
+     "exercise": "ab_machine",
+     "sets": 3,
+     "reps": "12-15"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "title": "Gym B: Push (Brust, Schultern, Trizeps)",
+   "weekday": "WE",
+   "start": "18:15",
+   "end": "19:40",
+   "items": [
+    {
+     "exercise": "treadmill",
+     "sets": 1,
+     "reps": "10 Min"
+    },
+    {
+     "exercise": "chest_press",
+     "sets": 3,
+     "reps": "8-12"
     },
     {
      "exercise": "shoulder_press",
@@ -29,66 +63,17 @@
      "reps": "8-12"
     },
     {
-     "exercise": "cable_lateral_raise",
+     "exercise": "incline_press",
      "sets": 3,
-     "reps": "12-15"
+     "reps": "8-12"
     },
     {
      "exercise": "triceps_pushdown",
      "sets": 3,
-     "reps": "10-15"
-    },
-    {
-     "exercise": "overhead_triceps",
-     "sets": 2,
-     "reps": "10-12"
-    },
-    {
-     "exercise": "cable_crunch",
-     "sets": 3,
-     "reps": "10-15"
-    },
-    {
-     "exercise": "pallof_press",
-     "sets": 3,
-     "reps": "10 pro Seite"
-    }
-   ]
-  },
-  {
-   "id": "B",
-   "title": "Gym B: Beine",
-   "weekday": "WE",
-   "start": "18:15",
-   "end": "19:40",
-   "items": [
-    {
-     "exercise": "leg_press",
-     "sets": 4,
-     "reps": "6-10"
-    },
-    {
-     "exercise": "seated_leg_curl",
-     "sets": 3,
-     "reps": "10-12"
-    },
-    {
-     "exercise": "leg_extension",
-     "sets": 3,
-     "reps": "10-15"
-    },
-    {
-     "exercise": "cable_pull_through",
-     "sets": 3,
-     "reps": "10-12"
-    },
-    {
-     "exercise": "hip_abduction",
-     "sets": 2,
      "reps": "12-15"
     },
     {
-     "exercise": "calf_raise",
+     "exercise": "pec_deck",
      "sets": 3,
      "reps": "12-15"
     }
@@ -96,55 +81,40 @@
   },
   {
    "id": "C",
-   "title": "Gym C: Pull (Rücken, Bizeps)",
+   "title": "Gym C: Pull (Rücken, Bizeps, Bauch)",
    "weekday": "FR",
    "start": "18:15",
    "end": "19:40",
    "items": [
     {
-     "exercise": "lat_pulldown_wide",
-     "sets": 4,
-     "reps": "8-12"
+     "exercise": "treadmill",
+     "sets": 1,
+     "reps": "10 Min"
     },
     {
      "exercise": "seated_cable_row",
      "sets": 3,
-     "reps": "8-10"
+     "reps": "8-12"
     },
     {
-     "exercise": "single_arm_pulldown",
+     "exercise": "lat_pulldown_wide",
      "sets": 3,
-     "reps": "10-12 pro Seite"
+     "reps": "8-12"
     },
     {
-     "exercise": "straight_arm_pulldown",
-     "sets": 2,
+     "exercise": "chest_supported_row",
+     "sets": 3,
+     "reps": "8-12"
+    },
+    {
+     "exercise": "db_curl",
+     "sets": 3,
      "reps": "12-15"
     },
     {
-     "exercise": "face_pull",
+     "exercise": "ab_machine",
      "sets": 3,
-     "reps": "15"
-    },
-    {
-     "exercise": "cable_curl",
-     "sets": 3,
-     "reps": "10-12"
-    },
-    {
-     "exercise": "hammer_curl",
-     "sets": 3,
-     "reps": "10-12"
-    },
-    {
-     "exercise": "captains_chair_knee_raise",
-     "sets": 3,
-     "reps": "10-15"
-    },
-    {
-     "exercise": "cable_woodchop",
-     "sets": 3,
-     "reps": "12 pro Seite"
+     "reps": "12-15"
     }
    ]
   }

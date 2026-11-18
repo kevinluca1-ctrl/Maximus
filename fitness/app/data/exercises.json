@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "exercises": [
   {
    "id": "chest_press",
@@ -85,7 +85,7 @@
     "high_low_fly"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "shoulder_press",
@@ -142,11 +142,11 @@
     "db_lateral"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "triceps_pushdown",
-   "name_de": "Trizepsdrücken am Kabel (Seil)",
+   "name_de": "Trizepsdrücken am Kabel",
    "name_en": "Rope Triceps Pushdown",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff am Seil",
@@ -196,7 +196,7 @@
     "single_arm_triceps"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "cable_crunch",
@@ -223,7 +223,7 @@
     "floor_crunch"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "pallof_press",
@@ -251,7 +251,7 @@
     "side_plank"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "leg_press",
@@ -307,7 +307,7 @@
     "cable_pull_through"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "leg_extension",
@@ -332,7 +332,7 @@
     "smith_lunge"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "cable_pull_through",
@@ -356,11 +356,12 @@
     "Hüfte kraftvoll nach vorne strecken, Gesäß anspannen."
    ],
    "alternatives": [
+    "db_rdl",
     "glute_kickback_machine",
     "hip_thrust_machine"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "hip_abduction",
@@ -387,12 +388,12 @@
     "side_leg_raise"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "calf_raise",
-   "name_de": "Wadenheben (Wadenmaschine oder Beinpresse)",
-   "name_en": "Calf Raise",
+   "name_de": "Wadenheben stehend (Maschine)",
+   "name_en": "Standing Calf Raise (Machine)",
    "equipment": "Maschine",
    "grip": "Griffe seitlich",
    "muscles": {
@@ -416,7 +417,7 @@
   },
   {
    "id": "lat_pulldown_wide",
-   "name_de": "Latzug am Kabel, breit",
+   "name_de": "Latzug am Kabel",
    "name_en": "Wide-Grip Lat Pulldown",
    "equipment": "Kabelzug",
    "grip": "Obergriff, breiter als schulterbreit",
@@ -446,7 +447,7 @@
   },
   {
    "id": "seated_cable_row",
-   "name_de": "Rudern am Kabel, sitzend (enger Griff)",
+   "name_de": "Rudern am Kabel, sitzend (V-Griff)",
    "name_en": "Seated Cable Row",
    "equipment": "Kabelzug",
    "grip": "Neutralgriff eng",
@@ -501,7 +502,7 @@
     "lat_machine"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "straight_arm_pulldown",
@@ -530,7 +531,7 @@
     "single_arm_pulldown"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "face_pull",
@@ -558,7 +559,7 @@
     "cable_reverse_fly"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "cable_curl",
@@ -585,7 +586,7 @@
     "single_arm_cable_curl"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "hammer_curl",
@@ -608,11 +609,12 @@
     "Kontrolliert absenken."
    ],
    "alternatives": [
+    "db_curl",
     "rope_hammer_curl",
     "cable_curl"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "captains_chair_knee_raise",
@@ -640,7 +642,7 @@
     "ab_machine"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "cable_woodchop",
@@ -668,7 +670,7 @@
     "torso_rotation_machine"
    ],
    "anim": null,
-   "plan": true
+   "plan": false
   },
   {
    "id": "cable_chest_press",
@@ -776,8 +778,8 @@
   },
   {
    "id": "pec_deck",
-   "name_de": "Butterfly-Maschine",
-   "name_en": "Pec Deck",
+   "name_de": "Brust-Fly (Maschine / Butterfly)",
+   "name_en": "Chest Fly (Machine)",
    "equipment": "Maschine",
    "grip": "",
    "muscles": {
@@ -797,7 +799,7 @@
     "cable_crossover"
    ],
    "anim": null,
-   "plan": false
+   "plan": true
   },
   {
    "id": "high_low_fly",
@@ -1025,7 +1027,7 @@
     "captains_chair_knee_raise"
    ],
    "anim": null,
-   "plan": false
+   "plan": true
   },
   {
    "id": "floor_crunch",
@@ -1079,7 +1081,7 @@
   {
    "id": "hack_squat",
    "name_de": "Hackenschmidt-Maschine",
-   "name_en": "Hack Squat",
+   "name_en": "Hack Squat (Machine)",
    "equipment": "Maschine",
    "grip": "",
    "muscles": {
@@ -1100,7 +1102,7 @@
     "leg_press"
    ],
    "anim": null,
-   "plan": false
+   "plan": true
   },
   {
    "id": "smith_squat",
@@ -1404,8 +1406,8 @@
   },
   {
    "id": "chest_supported_row",
-   "name_de": "Rudermaschine mit Brustpolster",
-   "name_en": "Chest-Supported Machine Row",
+   "name_de": "Rudern sitzend (Maschine)",
+   "name_en": "Seated Row (Machine)",
    "equipment": "Maschine",
    "grip": "",
    "muscles": {
@@ -1427,7 +1429,7 @@
     "seated_cable_row"
    ],
    "anim": null,
-   "plan": false
+   "plan": true
   },
   {
    "id": "single_arm_cable_row",
@@ -1681,6 +1683,80 @@
    ],
    "anim": null,
    "plan": false
+  },
+  {
+   "id": "treadmill",
+   "name_de": "Laufband",
+   "name_en": "Treadmill",
+   "equipment": "Cardio-Gerät",
+   "grip": "",
+   "muscles": {
+    "primary": [],
+    "secondary": []
+   },
+   "steps": [
+    "Locker anlaufen, Tempo im Unterhaltungsbereich.",
+    "Aufrecht laufen, Arme locker schwingen.",
+    "Nach 10 Minuten auf Gehtempo reduzieren."
+   ],
+   "alternatives": [],
+   "anim": null,
+   "plan": true
+  },
+  {
+   "id": "db_curl",
+   "name_de": "Bizeps-Curls (Kurzhanteln)",
+   "name_en": "Dumbbell Biceps Curl",
+   "equipment": "Kurzhanteln",
+   "grip": "Untergriff",
+   "muscles": {
+    "primary": [
+     "biceps"
+    ],
+    "secondary": [
+     "forearms"
+    ]
+   },
+   "steps": [
+    "Aufrecht stehen, Hanteln seitlich, Handflächen nach vorne.",
+    "Ellbogen am Körper fixieren.",
+    "Hanteln zur Schulter beugen, oben kurz anspannen.",
+    "Kontrolliert absenken, ohne Schwung."
+   ],
+   "alternatives": [
+    "hammer_curl",
+    "cable_curl"
+   ],
+   "anim": null,
+   "plan": true
+  },
+  {
+   "id": "db_rdl",
+   "name_de": "Rumänisches Kreuzheben (Kurzhanteln)",
+   "name_en": "Dumbbell Romanian Deadlift",
+   "equipment": "Kurzhanteln",
+   "grip": "Obergriff",
+   "muscles": {
+    "primary": [
+     "hamstrings",
+     "glutes"
+    ],
+    "secondary": [
+     "lower_back"
+    ]
+   },
+   "steps": [
+    "Hüftbreit stehen, Hanteln vor den Oberschenkeln, Knie leicht gebeugt.",
+    "Hüfte nach hinten schieben, Rücken gerade, Hanteln entlang der Beine absenken.",
+    "Bis zur deutlichen Dehnung hinten am Oberschenkel, etwa Kniehöhe.",
+    "Hüfte nach vorne schieben und aufrichten."
+   ],
+   "alternatives": [
+    "cable_pull_through",
+    "lying_leg_curl"
+   ],
+   "anim": null,
+   "plan": true
   }
  ]
 }

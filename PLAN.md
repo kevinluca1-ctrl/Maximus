@@ -20,7 +20,7 @@ Home-Assistant-Add-on (Ingress): FastAPI + SQLite, Frontend ohne Build-Schritt, 
 ## Phase 3: 3D
 - [x] Körpermodell (durchgehende Haut, Muskelrelief, Hände mit Griffarten), Generator in `tools/gen_body.mjs`
 - [x] Animationen: Brustpresse, Latzug breit
-- [ ] Animationen für die übrigen 22 Planübungen, danach Alternativen
+- [ ] Animationen für die übrigen 13 Planübungen (Plan seit 18.11.: Legs Mo, Push Mi, Pull Fr), danach Alternativen
 
 ## Phase 4: Feinschliff Tracking
 - [ ] Progressionshinweis (Gewicht erhöhen, wenn oberes Wdh.-Ende erreicht)

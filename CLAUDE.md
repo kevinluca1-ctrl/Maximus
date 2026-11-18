@@ -7,7 +7,7 @@ Sprache der Oberfläche und Kommentare: Deutsch. Keine Gedankenstriche (—) in 
 - `repository.yaml`: HA-Add-on-Repository. Add-on liegt in `fitness/` (`config.yaml`, `build.yaml`, `Dockerfile`, `run.sh`).
 - `fitness/app/main.py`: FastAPI + SQLite (`$DATA_DIR/fitness.db`, im Add-on `/data`). API unter `api/`.
 - `fitness/app/gcal.py`: Google-Kalender-Sync, noch Platzhalter (Phase 6).
-- `fitness/app/data/`: `exercises.json` (64 Übungen, DE/EN, Muskeln, Anleitung, Alternativen), `default_routines.json` (Gym A/B/C).
+- `fitness/app/data/`: `exercises.json` (67 Übungen, DE/EN, Muskeln, Anleitung, Alternativen), `default_routines.json` (Gym A/B/C).
 - `fitness/app/static/`: Frontend ohne Build-Schritt (ES-Module). `app.js` Ansichten und Router (Hash), `core.js` Zustand und Berechnungen (1RM, Rekorde, Erholung), `bodymap.js` SVG-Körperkarte (Platzhalter), `charts.js` SVG-Diagramme.
 - 3D: `viewer.js` (Three.js, vendored in `static/vendor/`), `rig.js` (Kinematik, Muskeldefinitionen), `anims.js` (Übungsanimationen), `body.bin`/`body.json` (Körpermodell), `body-data.js` (Base64-Fallback). `proto.html` = 3D-Testseite.
 - `tools/gen_body.mjs`: erzeugt das Körpermodell (SDF + Surface Nets + Skinning). Nach Änderungen an `rig.js` oder dem Generator neu erzeugen:
